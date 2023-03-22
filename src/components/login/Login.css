@@ -1,0 +1,9 @@
+@import "bootstrap/dist/css/bootstrap.min.css";
+
+.todo {
+  position: absolute;
+  top: 40%;
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+}
