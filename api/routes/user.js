@@ -1,5 +1,6 @@
 const express = require("express");
-const { generateToken, validateToken } = require("../config/tokens");
+const { generateToken } = require("../config/tokens");
+const { validateAuth } = require("../middleware/auth");
 const { User } = require("../models");
 const userRouter = express.Router();
 
@@ -39,10 +40,12 @@ userRouter.post("/logout", (req, res) => {
   res.sendStatus(204);
 });
 
-// userRouter.get("/secret", (req, res) => {
-//   const token = req.cookies.token;
-//   const { user } = validateToken(token);
-//   res.send(user);
-// });
+userRouter.get("/secret", validateAuth, (req, res) => {
+  res.send(req.user);
+});
+
+userRouter.get("/me", validateAuth, (req, res) => {
+  res.send(req.user);
+});
 
 module.exports = userRouter;
