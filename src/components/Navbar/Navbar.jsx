@@ -6,8 +6,20 @@ import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Navbar.css";
+import { Link } from "react-router-dom";
+import axios from "axios";
+import { useState } from "react";
 
 function NavScrollExample() {
+  const [user, setUser] = useState({});
+
+  const handleLogout = () => {
+    axios.post("api/user/logout").then(() => {
+      localStorage.removeItem("user");
+      setUser({});
+    });
+  };
+
   return (
     <Navbar className="fondo" expand="lg">
       <Container fluid>
@@ -26,11 +38,19 @@ function NavScrollExample() {
             <Nav.Link href="#action2">Venta</Nav.Link>
             <Nav.Link href="#action2">Alquiler</Nav.Link>
             <Nav.Link href="#action2">Contacto</Nav.Link>
+            <Link to="/register">
+              <Button className="btn-reg " variant="outline-light">
+                Register
+              </Button>
+            </Link>
+            <Link to="/login">
+              <Button variant="outline-light">Login</Button>
+            </Link>
 
-            <Button className="btn-reg " variant="outline-light">
-              Register
+            <Button variant="outline-light" user={user} onClick={handleLogout}>
+              Logout
             </Button>
-            <Button variant="outline-light">Login</Button>
+
             <NavDropdown title="Mi Perfil" id="navbarScrollingDropdown">
               <NavDropdown.Item href="#action3">Editar Perfil</NavDropdown.Item>
               <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>

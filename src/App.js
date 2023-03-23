@@ -1,10 +1,10 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
- import Login from "./components/login/Login";
- import Register from "./components/Register/Register";
+import Login from "./components/login/Login";
+import Register from "./components/Register/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
- import { Route, Routes } from "react-router-dom";
-
+import { Route, Routes } from "react-router-dom";
+import axios from "axios";
 
 function App() {
   return (
@@ -15,8 +15,7 @@ function App() {
         <Route path="/login" element={<Login />} />
 
         <Route path="/register" element={<Register />} />
-      </Routes> 
-
+      </Routes>
     </div>
   );
 }

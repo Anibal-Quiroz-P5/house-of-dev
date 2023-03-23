@@ -23,18 +23,31 @@ User.init(
     first_name: {
       type: S.STRING,
       allowNull: false,
+      validate: {
+        isAlpha: {
+          args: true,
+          msg: "El nombre solo puede contener letras",
+        },
+      },
     },
     last_name: {
       type: S.STRING,
       allowNull: false,
+      isAlpha: {
+        args: true,
+        msg: "El apellido solo puede contener letras",
+      },
     },
     email: {
       type: S.STRING,
       allowNull: false,
       validate: {
-        isEmail: true,
+        isEmail: {
+          args: true,
+          msg: "Debe ingresar un correo válido",
+        },
       },
-      unique: true, 
+      unique: true,
     },
     password: {
       type: S.STRING,
@@ -43,6 +56,14 @@ User.init(
         len: [8, 32],
       },
     },
+    // celnumber: {
+    //   type: S.STRING,
+    //   allowNull: false,
+    //   validate: {
+    //     len: [8, 32],
+    //     msg: "La contraseña debe contener entre 8 y 32 caracteres"
+    //   },
+    // },
     salt: {
       type: S.STRING,
     },
