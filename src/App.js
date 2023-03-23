@@ -1,9 +1,10 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
-import Login from "./components/login/Login";
-//import Register from "./components/Register/Register";
+ import Login from "./components/login/Login";
+ import Register from "./components/Register/Register";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Route, Routes } from "react-router";
+ import { Route, Routes } from "react-router-dom";
+
 
 function App() {
   return (
@@ -12,8 +13,10 @@ function App() {
 
       <Routes>
         <Route path="/login" element={<Login />} />
-        {/* <Route path="/register" element={<Register />} /> */}
-      </Routes>
+
+        <Route path="/register" element={<Register />} />
+      </Routes> 
+
     </div>
   );
 }
