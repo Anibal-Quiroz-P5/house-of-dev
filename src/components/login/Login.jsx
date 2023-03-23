@@ -25,6 +25,7 @@ function Login() {
       .then((res) => {
         console.log("r4es", res);
         setUser(res.data);
+        navigate("/");
       })
       .catch(() => {
         alert("se rompio");
@@ -39,10 +40,10 @@ function Login() {
 
   return (
     <div className="todo">
+      INICIAR SESIÓN
       <div className="color-overlay d-flex justify-content-center align-items-center">
         <Form className="rounded p-4 p-sm-3" onSubmit={handleSubmit}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email</Form.Label>
             <Form.Control
               value={email}
               onChange={(e) => {
@@ -50,10 +51,11 @@ function Login() {
               }}
               type="email"
               placeholder="Ingrese su Email"
+              className="input"
+              required
             />
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Contraseña</Form.Label>
+          <Form.Group className="mb-5" controlId="formBasicPassword">
             <Form.Control
               value={password}
               onChange={(e) => {
@@ -61,13 +63,14 @@ function Login() {
               }}
               type="password"
               placeholder="Ingrese su contraseña"
+              required
             />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
-            Entrar
+          <button className="btn-mi-color" type="submit">
+            LOG IN
             <Link to="/" />
-          </Button>
+          </button>
         </Form>
       </div>
     </div>

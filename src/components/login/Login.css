@@ -1,9 +1,25 @@
 @import "bootstrap/dist/css/bootstrap.min.css";
 
 .todo {
+  margin-left: 15px;
+  font-family: "Montserrat", sans-serif;
   position: absolute;
-  top: 40%;
+  top: 20%;
   /* display: flex;
   justify-content: center;
   align-items: center; */
+  z-index: 10;
+}
+.btn-mi-color {
+  font-size: 15px;
+  font-weight: bolder;
+  color: #123ac8;
+  background-color: white;
+  border-color: #123ac8;
+  border-radius: 25px;
+  padding: 10px 20px;
+}
+form {
+  color: aqua;
+  background-color: #f7f3ee;
 }
