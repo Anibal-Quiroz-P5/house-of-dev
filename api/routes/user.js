@@ -12,7 +12,7 @@ userRouter.post("/register", (req, res) => {
   const { first_name, last_name, email, password } = req.body;
   User.create({ first_name, last_name, email, password })
     .then((user) => res.status(201).send(user))
-    .catch((err) => console.log("error al registrar el usuario", err));
+    .catch((err) => res.status(500).send(err));
 });
 
 userRouter.post("/login", (req, res) => {
@@ -32,7 +32,7 @@ userRouter.post("/login", (req, res) => {
         console.log("te logueaste", user);
       });
     })
-    .catch((error) => console.log("email no valido"));
+    .catch(() => console.log("email no valido"));
 });
 
 userRouter.post("/logout", (req, res) => {
