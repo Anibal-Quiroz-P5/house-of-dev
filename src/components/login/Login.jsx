@@ -1,42 +1,36 @@
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-import { Link, Navigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
 
 function Login() {
+  const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [user, setUser] = useState({});
   console.log("user", user);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setEmail("");
-    setPassword("");
     axios
       .post("api/user/login", {
         email: email,
         password: password,
       })
       .then((res) => {
-        console.log("r4es", res);
-        setUser(res.data);
+        localStorage.setItem("user", JSON.stringify(res.data));
         navigate("/");
       })
       .catch(() => {
         alert("se rompio");
       });
   };
-  // useEffect(() => {
-  //   const userLogueado = user || {};
-
-  //   setUser(userLogueado);
-  //   console.log("desdeuseefect", userLogueado);
-  // }, [user]);
+  useEffect(() => {
+    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
+    setUser(userLogueado);
+  }, []);
 
   return (
     <div className="todo">
