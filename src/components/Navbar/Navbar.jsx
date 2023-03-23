@@ -9,7 +9,7 @@ import "./Navbar.css";
 
 function NavScrollExample() {
   return (
-    <Navbar bg="danger" expand="lg">
+    <Navbar className="fondo" expand="lg">
       <Container fluid>
         <Navbar.Brand href="#">House of Dev</Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
