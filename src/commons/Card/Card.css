@@ -1,0 +1,21 @@
+.columna-card {
+  width: 80%;
+  margin: 0 auto;
+  border: 1px solid #123acb;
+  color: #123acb;
+}
+.columna1-card {
+  margin: 0 auto;
+}
+
+.container-card {
+  width: 100%;
+  padding: 15px;
+}
+.carousel {
+  width: 80%;
+  height: 700px;
+  display: flex;
+  margin: 0 auto;
+  margin-top: 2%;
+}

@@ -1,0 +1,44 @@
+.back-img {
+  background-image: url(https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8Y2FzYSUyMG1vZGVybmF8ZW58MHx8MHx8&w=1000&q=80);
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+.form-inicio {
+  margin-left: 15px;
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  top: 50%;
+  margin-left: 30%;
+  z-index: 10;
+}
+.container-home {
+  background-color: gray;
+  padding: 50px;
+}
+.fila-home {
+  color: #123acb;
+}
+
+.columna-home {
+  padding: 10px;
+  border: 1px solid #123acb;
+}
+
+.hr-home {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border: 0px;
+  border: 1px solid #123acb;
+}
+
+.input-ubicacion {
+  margin-top: 2%;
+  margin-bottom: 5%;
+}
+
+.btn-ver {
+  display: flex;
+  border-radius: 0px;
+}
