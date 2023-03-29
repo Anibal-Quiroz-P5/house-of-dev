@@ -1,0 +1,17 @@
+/* css */
+
+.container-grid {
+  background-color: white;
+  color: #123acb;
+  width: 80%;
+  margin: 0 auto;
+  height: 400px;
+}
+
+.columna-grid {
+  border: 1px solid #123acb;
+}
+
+.btn {
+  margin: 1%;
+}
