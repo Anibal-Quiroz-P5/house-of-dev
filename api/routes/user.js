@@ -8,6 +8,14 @@ userRouter.get("/", (req, res) => {
   User.findAll().then((result) => res.send(result));
 });
 
+userRouter.get("/:id", (req, res) => {
+  const id = req.params.id;
+  User.findOne({ where: { id } }).then((user) => {
+    console.log("entre a la ruta");
+    res.send(user);
+  });
+});
+
 userRouter.post("/register", (req, res) => {
   const { first_name, last_name, email, password } = req.body;
   User.create({ first_name, last_name, email, password })
