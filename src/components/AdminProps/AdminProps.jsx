@@ -2,17 +2,17 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import "./Grid.css";
+import "./AdminProps.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Button, Card, Form, ListGroup } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
+import { BiBed, BiBath } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
-import { MdFavoriteBorder } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
+import { FiEdit, FiTrash2 } from "react-icons/fi";
 
-export const Grid = () => {
+export const AdminProps = () => {
   const [properties, setProperties] = useState([]);
 
   useEffect(() => {
@@ -29,6 +29,29 @@ export const Grid = () => {
 
   return (
     <section>
+      <div
+        style={{
+          width: "80%",
+          margin: "0 auto",
+        }}
+      >
+        <Row>
+          <Col
+            sm={12}
+            style={{
+              border: "2px solid #123acb",
+              marginTop: "3%",
+              marginBottom: "3%",
+              padding: "10px",
+              color: "#123acb",
+              fontFamily: "Montserrat",
+              fontWeight: "900",
+            }}
+          >
+            PANEL DE PROPIEDADES
+          </Col>
+        </Row>
+      </div>
       <Container className="cont-grid">
         <Row className="row-grid">
           {properties.map((propiedad) => {
@@ -72,22 +95,27 @@ export const Grid = () => {
                   <Row>
                     <Col className="col-grid" sm={12}>
                       <Form.Text className="text-muted">
-                        {propiedad.description.length > 250
-                          ? `${propiedad.description.substring(0, 250)}...`
-                          : propiedad.description}
+                        {propiedad.description}
                       </Form.Text>
                     </Col>
                   </Row>
                 </Card.Body>
                 <Card.Body className="botones-div">
-                  <Button className="botones-cta">
+                  {/* <Button className="botones-cta">
                     <MdFavoriteBorder className="boton-cta" />
                   </Button>
                   <Button className="botones-cta">
                     <BiPhoneCall className="boton-cta" />
-                  </Button>
-                  <Link to={`/property/${propiedad.id}`}>
-                    <Button className="buttonVerMas">VER MÁS</Button>
+                  </Button> */}
+                  <Link to={`/properties/${propiedad.id}`}>
+                    <Button className="buttonEditar">
+                      <FiEdit className="boton-cta" /> EDITAR
+                    </Button>
+                  </Link>
+                  <Link to={"/propiedades"}>
+                    <Button className="buttonEditar">
+                      <FiTrash2 className="boton-cta" /> ELIMINAR
+                    </Button>
                   </Link>
                 </Card.Body>
               </Col>
