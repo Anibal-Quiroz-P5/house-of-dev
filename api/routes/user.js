@@ -7,6 +7,7 @@ const userRouter = express.Router();
 userRouter.get("/", (req, res) => {
   User.findAll().then((result) => res.send(result));
 });
+
 //ruta para buscar un usuario
 userRouter.get("/:id", (req, res) => {
   const id = req.params.id;
@@ -15,6 +16,7 @@ userRouter.get("/:id", (req, res) => {
   });
 });
 //ruta para crear un nuevo usuario
+
 userRouter.post("/register", (req, res) => {
   const { first_name, last_name, email, password, phone } = req.body;
   User.create({ first_name, last_name, email, password, phone })
