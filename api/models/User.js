@@ -16,10 +16,10 @@ class User extends S.Model {
 
 User.init(
   {
-    /*     is_admin: {
-      type: DataTypes.BOOLEAN,
+    is_admin: {
+      type: S.BOOLEAN,
       defaultValue: false,
-    }, */
+    },
     first_name: {
       type: S.STRING,
       allowNull: false,
@@ -56,14 +56,10 @@ User.init(
         len: [8, 32],
       },
     },
-    // celnumber: {
-    //   type: S.STRING,
-    //   allowNull: false,
-    //   validate: {
-    //     len: [8, 32],
-    //     msg: "La contraseña debe contener entre 8 y 32 caracteres"
-    //   },
-    // },
+    phone: {
+      type: S.INTEGER,
+      allowNull: false,
+    },
     salt: {
       type: S.STRING,
     },
