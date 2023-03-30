@@ -30,7 +30,8 @@
   },
   "scripts": {
     "start": "concurrently 'npm run server' 'npm run client'",
-    "server": "nodemon api/server.js",
+    "server": "nodemon api/server.js & node api/seed.js",
+    "seed": "node api/seed.js",
     "client": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
