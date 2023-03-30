@@ -2,13 +2,12 @@ import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import Login from "./components/login/Login";
 import Register from "./components/Register/Register";
-import { Grid } from "./commons/Grid/Grid";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Route, Routes } from "react-router-dom";
-import axios from "axios";
 import { Home } from "./components/Home/Home";
 import { Alquiler } from "./components/Alquiler/Alquiler";
-import { Card } from "./commons/Card/Card";
+import { Property } from "./commons/Property/Property";
+import { Venta } from "./components/Venta/Venta";
 
 function App() {
   return (
@@ -16,10 +15,11 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/propiedad" element={<Card />} />
+        <Route path="/property/:id" element={<Property />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/propiedades-alquiler" element={<Alquiler />} />
+        <Route path="/alquiler" element={<Alquiler />} />
+        <Route path="/venta" element={<Venta />} />
       </Routes>
     </div>
   );

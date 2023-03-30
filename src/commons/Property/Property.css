@@ -19,3 +19,12 @@
   margin: 0 auto;
   margin-top: 2%;
 }
+
+.prop-container {
+  width: 90%;
+}
+
+.propertyImage {
+  height: 600px;
+  margin-top: 3%;
+}

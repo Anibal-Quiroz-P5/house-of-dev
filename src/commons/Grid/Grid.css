@@ -12,6 +12,44 @@
   border: 1px solid #123acb;
 }
 
-.btn {
-  margin: 1%;
+.col-grid {
+  border: 1px solid #123acb;
+}
+.cont-grid {
+  display: flex;
+  justify-content: center;
+}
+
+.propiedadImage {
+  height: 300px;
+  width: 100%;
+}
+
+.botones-div {
+  display: flex;
+  justify-content: end;
+}
+
+.botones-cta {
+  background-color: white;
+  border-radius: 50px;
+  border-color: orange;
+  margin: 2%;
+}
+
+.buttonVerMas {
+  background-color: white;
+  border-radius: 50px;
+  margin-top: 13%;
+  color: #123acb;
+  font-family: "Montserrat";
+  font-weight: 800;
+}
+
+.boton-cta {
+  color: #123acb;
+}
+
+.botones-info {
+  color: #123acb;
 }
