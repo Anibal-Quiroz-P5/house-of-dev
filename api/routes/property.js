@@ -110,6 +110,7 @@ propertyRouter.get("/ubication/:city", (req, res) => {
     .then((property) => res.json(property))
     .catch((err) => res.send(err));
 });
+
 //provincia
 propertyRouter.get("/state/:state", (req, res) => {
   Property.findAll({

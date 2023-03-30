@@ -1,47 +1,105 @@
-import React from "react";
-import "./Card.css";
-import Carousel from "react-bootstrap/Carousel";
+import React, { useEffect, useState } from "react";
+import {
+  Card,
+  Container,
+  Form,
+  ListGroup,
+  Button,
+  Carousel,
+} from "react-bootstrap";
+import "./Property.css";
+import axios from "axios";
+import { useParams } from "react-router";
+import { Link } from "react-router-dom";
 
-export const Card = () => {
+export const Property = () => {
+  const { id } = useParams();
+  const [properties, setProperties] = useState([]);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
+    setUser(userLogueado);
+  }, [user]);
+
+  useEffect(() => {
+    axios
+      .get(`/api/property/${id}`)
+      .then((res) => {
+        console.log(res.data);
+        setProperties(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [id]);
+
   return (
     <>
-      <Carousel slide={false} style={{ display: "flex " }}>
-        <Carousel.Item>
-          <img
-            src="https://images.pexels.com/photos/7512042/pexels-photo-7512042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="First slide"
-          />
-          <Carousel.Caption>
-            <h3>First slide label</h3>
-            <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            src="https://images.pexels.com/photos/7512042/pexels-photo-7512042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="Second slide"
-          />
+      <Container className="prop-container">
+        <Card.Img
+          className="propertyImage"
+          variant="top"
+          src={properties.image[0]}
+        />
+        <Card>
+          <Card.Body>
+            <Card.Title className="centerItem">{properties.title}</Card.Title>
+            <Card.Text>{properties.description}</Card.Text>
+          </Card.Body>
+        </Card>
+        <ListGroup className="list-group-flush">
+          <ListGroup.Item>
+            <Form.Text className="text-muted">
+              Tipo: {properties.type} | Condición: {properties.condition}{" "}
+            </Form.Text>
+            <br /> USD {properties.price}
+          </ListGroup.Item>
+          <ListGroup.Item>
+            {properties.bedroom} Dormitorios | {properties.bathroom} Baños |{" "}
+            {properties.area} m2
+          </ListGroup.Item>
+          <ListGroup.Item>
+            {properties.address}. {properties.city}, {properties.state},{" "}
+            {properties.country}
+          </ListGroup.Item>
+        </ListGroup>
+        <Card.Body>
+          <Card.Body>
+            {user.first_name ? (
+              <>
+                <Button className="buttonStyle" type="submit">
+                  Favorito
+                </Button>
+                <Link to={`/properties/change/${id}`}>
+                  <Button className="buttonStyle">Agendar visita</Button>
+                </Link>
+              </>
+            ) : (
+              <Button className="buttonStyle" type="submit">
+                Agendar Visita
+              </Button>
+            )}
+          </Card.Body>
+          {user.is_admin ? (
+            <>
+              <Link to={`/properties/change/${id}`}>
+                <Button className="buttonStyle">Editar Propiedad</Button>
+              </Link>
+              <Link to={`/properties/delete/${id}`}>
+                <Button className="buttonStyle">Eliminar Propiedad</Button>
+              </Link>
+            </>
+          ) : null}
+        </Card.Body>
+      </Container>
+    </>
+  );
+};
 
-          <Carousel.Caption>
-            <h3>Second slide label</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-          </Carousel.Caption>
-        </Carousel.Item>
-        <Carousel.Item>
-          <img
-            src="https://images.pexels.com/photos/7512042/pexels-photo-7512042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-            alt="Third slide"
-          />
-
-          <Carousel.Caption>
-            <h3>Third slide label</h3>
-            <p>
-              Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-            </p>
-          </Carousel.Caption>
-        </Carousel.Item>
-      </Carousel>
-      <div className="container-card">
+{
+  /// diseño parecido bs
+  /* <div className="container-card">
         <div className="row fila-card">
           <div className="col-12 columna1-card">
             <div className="banner-inicio">
@@ -98,10 +156,10 @@ export const Card = () => {
                 >
                   <path d="M1 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h5v-1H2v-1h4v-1H4v-1h2v-1H2v-1h4V9H4V8h2V7H2V6h4V2h1v4h1V4h1v2h1V2h1v4h1V4h1v2h1V2h1v4h1V1a1 1 0 0 0-1-1H1z" />
                 </svg>
-                Supeficie
+                {propiedadUno.title}
               </div>
               <div className="col columna-card"> Habitaciones</div>
-              <div className="col columna-card">Baños</div>
+              <div className="col columna-card">{propiedadUno.country}</div>
             </div>
             <div className="row fila-card">
               <div className="col columna-card">
@@ -140,7 +198,5 @@ export const Card = () => {
             </div>
           </div>
         </div>
-      </div>
-    </>
-  );
-};
+      </div> */
+}

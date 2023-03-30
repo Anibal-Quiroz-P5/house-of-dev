@@ -1,3 +1,21 @@
-.hr-alquiler {
+.hr-separador {
   width: 80%;
+  margin: 0 auto;
+  margin-bottom: 2%;
+}
+
+.buttonFav {
+  border: 1px solid #123ac8;
+  border-radius: 22px 0px 0px 22px;
+  background-color: white;
+  color: #123acb;
+  font-family: "Montserrat";
+  font-weight: 800;
+  margin-top: 10%;
+}
+
+.fav {
+  border: 1px solid orange;
+  border-radius: 12px;
+  margin-left: 2px;
 }

@@ -8,10 +8,16 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { NavItem } from "react-bootstrap";
 
 function NavScrollExample() {
   const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
+    setUser(userLogueado);
+  }, [user]);
 
   const handleLogout = () => {
     axios.post("api/user/logout").then(() => {
@@ -21,63 +27,70 @@ function NavScrollExample() {
   };
 
   return (
-    // <Navbar classNameName="fondo" expand="lg">
-    //   <Container fluid>
-    //     <Navbar.Brand href="#">House of Dev</Navbar.Brand>
-    //     <Navbar.Toggle aria-controls="navbarScroll" />
-    //     <Navbar.Collapse id="navbarScroll">
-    //       <Nav
-    //         className="me-auto my-2 my-lg-0"
-    //         style={{ maxHeight: "100px" }}
-    //         navbarScroll
-    //       >
-    //         <Nav.Link className="btn-nav" href="/">
-    //           Inicio
-    //         </Nav.Link>
-    //         <Nav.Link href="#action2">Nosotros</Nav.Link>
-    //         <Nav.Link href="#action2">Venta</Nav.Link>
-    //         <Nav.Link href="#action2">Alquiler</Nav.Link>
-    //         <Link to="/contacto">
-    //           {" "}
-    //           <Nav.Link>Contacto</Nav.Link>
-    //         </Link>
-    //         <Link to=""></Link>
-    //         <Link to=""></Link>
-    //         <Link to=""></Link>
-
-    //         <Link to="/register">
-    //           <Button className="btn-reg " variant="outline-light">
-    //             Register
-    //           </Button>
-    //         </Link>
-    //         <Link to="/login">
-    //           <Button variant="outline-light">Login</Button>
-    //         </Link>
-
-    //         <Button variant="outline-light" user={user} onClick={handleLogout}>
-    //           Logout
-    //         </Button>
-
-    //         <NavDropdown title="Mi Perfil" id="navbarScrollingDropdown">
-    //           <NavDropdown.Item href="#action3">Editar Perfil</NavDropdown.Item>
-    //           <NavDropdown.Item href="#action4">Logout</NavDropdown.Item>
-    //         </NavDropdown>
-    //       </Nav>
-    //     </Navbar.Collapse>
-    //     <Form className="d-flex">
-    //       <Form.Control
-    //         type="search"
-    //         placeholder="Busca tu propiedad"
-    //         className="me-2"
-    //         aria-label="Search"
-    //       />
-
-    //       <Button variant="outline-light">Buscar</Button>
-    //     </Form>
-    //   </Container>
-    // </Navbar>
     <>
-      <nav className="navbar navbar-expand-lg navbar-light">
+      <Navbar className="navbar" expand="lg">
+        <Container>
+          <Link to="/" className="link">
+            <Navbar.Brand>House of Dev</Navbar.Brand>
+          </Link>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Link to="/venta" className="nav-link">
+                Venta
+              </Link>
+              <Link to="/alquiler" className="nav-link">
+                Alquiler
+              </Link>
+              <Link to="/nosotros" className="nav-link">
+                Nosotros
+              </Link>
+              <Link to="/contacto" className="nav-link">
+                Contacto
+              </Link>
+              {user.is_admin ? (
+                <NavDropdown title="Admin" id="basic-nav-dropdown">
+                  <NavDropdown.Item>Usuarios</NavDropdown.Item>
+                  <NavDropdown.Item>Citas</NavDropdown.Item>
+                  <NavDropdown.Item>Propiedades</NavDropdown.Item>
+                </NavDropdown>
+              ) : null}
+              {user.first_name ? (
+                <NavDropdown title={user.first_name} id="basic-nav-dropdown">
+                  <NavDropdown.Item>Visitas Agendadas</NavDropdown.Item>
+                  <NavDropdown.Item>Favoritos</NavDropdown.Item>
+                  <NavDropdown.Item>Mi Perfil</NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <Link to="/login" className="link">
+                    <NavDropdown.Item user={user} onClick={handleLogout}>
+                      Logout
+                    </NavDropdown.Item>
+                  </Link>
+                </NavDropdown>
+              ) : (
+                <>
+                  <Button
+                    className="button-position"
+                    href="/login"
+                    variant="outline-light "
+                  >
+                    Iniciar Sesión
+                  </Button>
+
+                  <Button
+                    className="button-position"
+                    href="/login"
+                    variant="outline-light "
+                  >
+                    Registrarme
+                  </Button>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+      {/* <nav className="navbar navbar-expand-lg navbar-light">
         <Link to="/" className="navbar-brand">
           House of Dev
         </Link>
@@ -124,26 +137,35 @@ function NavScrollExample() {
                 Mi perfil
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/register" className="nav-link">
-                <button className="btn-reg">Registro</button>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                <button className="btn-reg">Login</button>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/logout" className="nav-link">
-                <button className="btn-reg" user={user} onClick={handleLogout}>
-                  Logout
-                </button>
-              </Link>
-            </li>
+            {!user.id ? (
+              <>
+                <li className="nav-item">
+                  <Link to="/register" className="nav-link">
+                    <button className="btn-reg">Registro</button>
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/login" className="nav-link">
+                    <button className="btn-reg">Login</button>
+                  </Link>
+                </li>
+              </>
+            ) : (
+              <li className="nav-item">
+                <Link to="/logout" className="nav-link">
+                  <button
+                    className="btn-reg"
+                    user={user}
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </button>
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
-      </nav>
+      </nav> */}
     </>
   );
 }

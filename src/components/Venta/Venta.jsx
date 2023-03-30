@@ -1,5 +1,5 @@
 import React from "react";
-import "./Alquiler.css";
+import "./Venta.css";
 import { Grid } from "../../commons/Grid/Grid";
 import { Button, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
@@ -7,7 +7,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useEffect } from "react";
 import { useState } from "react";
 
-export const Alquiler = () => {
+export const Venta = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -35,7 +35,7 @@ export const Alquiler = () => {
               fontWeight: "900",
             }}
           >
-            PROPIEDADES EN ALQUILER
+            PROPIEDADES EN VENTA
           </Col>
         </Row>
       </div>
