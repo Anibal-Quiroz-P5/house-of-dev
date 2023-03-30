@@ -1,21 +1,13 @@
 /* css */
 
-.btn-reg {
-  display: flex;
-}
-
-.fondo {
-  background-color: #fe4236;
-}
-
 .navbar {
   background-color: #fe4236;
 }
-
-.collapse {
-  display: flex;
+.link {
+  text-decoration: none;
 }
 
-.dropdown {
-  display: flex;
+.button-position {
+  justify-content: flex-end;
+  margin: 2px;
 }

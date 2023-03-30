@@ -15,7 +15,7 @@ export const Home = () => {
       <div className="form-inicio">
         <div className="container-home">
           <div className="row fila-home">
-            <div className="col-12 columna-home"> ¿Que estas buscando?</div>
+            <div className="col-12 columna-home"> ¿QUÉ ESTAS BUSCANDO?</div>
 
             <div className="col-12 columna-home">
               {" "}
@@ -32,8 +32,8 @@ export const Home = () => {
                 <label class="form-check-label" for="exampleRadios1">
                   Comprar
                 </label>
-                <div className="hr-home"> </div>
               </div>
+              <div className="hr-home"> </div>
               <div class="form-check">
                 <input
                   onChange={handleChange}
@@ -50,19 +50,19 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          <input
+          {/* <input
             type="text"
             placeholder="UBICACIÓN"
             className="input-ubicacion"
-          />
+          /> */}
           <div>
             {value == "comprar" ? (
-              <Link to="/propiedades-venta">
-                <button className="btn-ver">Ver propiedades</button>
+              <Link to="/venta">
+                <button className="btn-ver">VER PROPIEDADES</button>
               </Link>
             ) : (
-              <Link to="/propiedades-alquiler">
-                <button className="btn-ver">Ver propiedades</button>
+              <Link to="/alquiler">
+                <button className="btn-ver">VER PROPIEDADES</button>
               </Link>
             )}
           </div>
