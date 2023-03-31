@@ -49,10 +49,16 @@ function NavScrollExample() {
                 Contacto
               </Link>
               {user.is_admin ? (
-                <NavDropdown title="Admin" id="basic-nav-dropdown">
-                  <NavDropdown.Item>Usuarios</NavDropdown.Item>
-                  <NavDropdown.Item>Citas</NavDropdown.Item>
-                  <NavDropdown.Item>Propiedades</NavDropdown.Item>
+                <NavDropdown title="Panel de Control" id="basic-nav-dropdown">
+                  <Link to="/users" className="nav-link">
+                    Usuarios
+                  </Link>
+                  <Link to="/citas" className="nav-link">
+                    Citas
+                  </Link>
+                  <Link to="/propiedades" className="nav-link">
+                    Propiedades
+                  </Link>
                 </NavDropdown>
               ) : null}
               {user.first_name ? (

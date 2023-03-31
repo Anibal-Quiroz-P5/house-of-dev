@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react";
-import {
-  Card,
-  Container,
-  Form,
-  ListGroup,
-  Button,
-  Carousel,
-} from "react-bootstrap";
+import { Card, Container, Form, ListGroup, Button } from "react-bootstrap";
 import "./Property.css";
 import axios from "axios";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 
 export const Property = () => {
   const { id } = useParams();
   const [properties, setProperties] = useState([]);
   const [user, setUser] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
-  }, [user]);
+  }, []);
 
   useEffect(() => {
     axios
@@ -37,11 +31,6 @@ export const Property = () => {
   return (
     <>
       <Container className="prop-container">
-        <Card.Img
-          className="propertyImage"
-          variant="top"
-          src={properties.image[0]}
-        />
         <Card>
           <Card.Body>
             <Card.Title className="centerItem">{properties.title}</Card.Title>
@@ -75,13 +64,9 @@ export const Property = () => {
                   <Button className="buttonStyle">Agendar visita</Button>
                 </Link>
               </>
-            ) : (
-              <Button className="buttonStyle" type="submit">
-                Agendar Visita
-              </Button>
-            )}
+            ) : null}
           </Card.Body>
-          {user.is_admin ? (
+          {/* {user.is_admin ? (
             <>
               <Link to={`/properties/change/${id}`}>
                 <Button className="buttonStyle">Editar Propiedad</Button>
@@ -90,7 +75,7 @@ export const Property = () => {
                 <Button className="buttonStyle">Eliminar Propiedad</Button>
               </Link>
             </>
-          ) : null}
+          ) : null} */}
         </Card.Body>
       </Container>
     </>

@@ -50,7 +50,6 @@ function BasicExample() {
           placeholder="Ingrese su nombre"
         />
       </Form.Group>
-
       <Form.Group className="mb-3" controlId="formBasicLastName">
         <Form.Label> </Form.Label>
         <Form.Control
