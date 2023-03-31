@@ -46,6 +46,7 @@ adminRouter.delete("/delete/:id", (req, res) => {
   // //     ? user.destroy().then(() => res.sendStatus(204))
   // //     : res.status(404).send("El usuario no existe")
   // // );
+
 });
 
 module.exports = adminRouter;
