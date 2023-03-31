@@ -65,7 +65,8 @@ function NavScrollExample() {
                 <NavDropdown title={user.first_name} id="basic-nav-dropdown">
                   <NavDropdown.Item>Visitas Agendadas</NavDropdown.Item>
                   <NavDropdown.Item>Favoritos</NavDropdown.Item>
-                  <NavDropdown.Item>Mi Perfil</NavDropdown.Item>
+                  <Link to="/userview" className="nav-link">
+                  Mi Perfil</Link>
                   <NavDropdown.Divider />
                   <Link to="/login" className="link">
                     <NavDropdown.Item user={user} onClick={handleLogout}>
@@ -75,23 +76,21 @@ function NavScrollExample() {
                 </NavDropdown>
               ) : (
                 <>
-                  <Link to="/login" className="link">
-                    <Button
-                      className="button-position"
-                      variant="outline-light "
-                    >
-                      Iniciar Sesión
-                    </Button>
-                  </Link>
-                  <Link to="/register" className="link">
-                    {" "}
-                    <Button
-                      className="button-position"
-                      variant="outline-light "
-                    >
-                      Registrarme
-                    </Button>
-                  </Link>
+                  <Button
+                    className="button-position"
+                    href="/login"
+                    variant="outline-light "
+                  >
+                    Iniciar Sesión
+                  </Button>
+
+                  <Button
+                    className="button-position"
+                    href="/register"
+                    variant="outline-light "
+                  >
+                    Registrarme
+                  </Button>
                 </>
               )}
             </Nav>
