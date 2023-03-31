@@ -63,6 +63,7 @@ function NavScrollExample() {
               ) : null}
               {user.first_name ? (
                 <NavDropdown title={user.first_name} id="basic-nav-dropdown">
+
                   <Link to="/visitas-agendadas" className="link-perfil">
                     Visitas Agendadas
                   </Link>
@@ -73,6 +74,7 @@ function NavScrollExample() {
                   <Link to="/userview" className="link-perfil">
                     Mi Perfil
                   </Link>
+
                   <NavDropdown.Divider />
                   <Link
                     to="/login"
@@ -85,23 +87,21 @@ function NavScrollExample() {
                 </NavDropdown>
               ) : (
                 <>
-                  <Link to="/login" className="link">
-                    <Button
-                      className="button-position"
-                      variant="outline-light "
-                    >
-                      Iniciar Sesión
-                    </Button>
-                  </Link>
-                  <Link to="/register" className="link">
-                    {" "}
-                    <Button
-                      className="button-position"
-                      variant="outline-light "
-                    >
-                      Registrarme
-                    </Button>
-                  </Link>
+                  <Button
+                    className="button-position"
+                    href="/login"
+                    variant="outline-light "
+                  >
+                    Iniciar Sesión
+                  </Button>
+
+                  <Button
+                    className="button-position"
+                    href="/register"
+                    variant="outline-light "
+                  >
+                    Registrarme
+                  </Button>
                 </>
               )}
             </Nav>
