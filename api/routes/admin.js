@@ -40,11 +40,15 @@ router.delete("/:id", (req, res) => {
   // if (!req.user.isAdmin) {
   //   return res.status(403).send("No tienes permiso para realizar esta acción");
   // }
-  User.findByPk(req.params.id).then((user) =>
-    !user
-      ? res.status(404).send("El usuario no existe")
-      : user.destroy().then(() => res.sendStatus(204))
-  );
+  // User.findByPk(req.params.id).then((user) =>
+  //   !user
+  //     ? res.status(404).send("El usuario no existe")
+  //     : user.destroy().then(() => res.sendStatus(204))
+  // );
+  const id = req.params.id;
+  User.destroy({ where: { id } })
+    .then((res) => res.status(204).send("Deleted"))
+    .catch((error) => res.status(404).send(error));
 });
 
 module.exports = router;
