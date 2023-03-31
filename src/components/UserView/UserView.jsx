@@ -27,7 +27,7 @@ export const UserView = () => {
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
-  }, [setUser]);
+  }, []);
 
   ///////////////////////////////////////////////////////////
 
@@ -82,7 +82,7 @@ export const UserView = () => {
       <div className="container rectangle_108">
         <form method="post" onSubmit={handleSubmitt}>
           {" "}
-          {/* FORMULARIO */}(
+          {/* FORMULARIO */}
           <div className="rectangle_23">
             <h5> MI PERFIL</h5>
           </div>
@@ -208,7 +208,6 @@ export const UserView = () => {
                 </div>
               </div>
             </div>
-            )
           </div>
         </form>
       </div>

@@ -11,8 +11,17 @@ import { Property } from "./commons/Property/Property";
 import { Venta } from "./components/Venta/Venta";
 import { AdminProps } from "./components/AdminProps/AdminProps";
 import { AdminAllUsers } from "./components/AdminAllUsers/AdminAllUsers";
+import { useState, useEffect } from "react";
+import { Favoritos } from "./components/Favoritos/Favoritos";
 
 function App() {
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
+    setUser(userLogueado);
+  }, []);
+
   return (
     <div className="App">
       <Navbar />
@@ -24,8 +33,13 @@ function App() {
         <Route path="/userview" element={<UserView />} />
         <Route path="/alquiler" element={<Alquiler />} />
         <Route path="/venta" element={<Venta />} />
-        <Route path="/propiedades" element={<AdminProps />} />
-        <Route path="/users" element={<AdminAllUsers />} />
+        <Route path="/favoritos" element={<Favoritos />} />
+        {user.is_admin ? (
+          <Route path="/propiedades" element={<AdminProps />} />
+        ) : null}
+        {user.is_admin ? (
+          <Route path="/users" element={<AdminAllUsers />} />
+        ) : null}
       </Routes>
     </div>
   );

@@ -63,14 +63,24 @@ function NavScrollExample() {
               ) : null}
               {user.first_name ? (
                 <NavDropdown title={user.first_name} id="basic-nav-dropdown">
-                  <NavDropdown.Item>Visitas Agendadas</NavDropdown.Item>
-                  <NavDropdown.Item>Favoritos</NavDropdown.Item>
-                  <NavDropdown.Item>Mi Perfil</NavDropdown.Item>
+                  <Link to="/visitas-agendadas" className="link-perfil">
+                    Visitas Agendadas
+                  </Link>
+
+                  <Link to="/favoritos" className="link-perfil">
+                    Favoritos
+                  </Link>
+                  <Link to="/userview" className="link-perfil">
+                    Mi Perfil
+                  </Link>
                   <NavDropdown.Divider />
-                  <Link to="/login" className="link">
-                    <NavDropdown.Item user={user} onClick={handleLogout}>
-                      Logout
-                    </NavDropdown.Item>
+                  <Link
+                    to="/login"
+                    className="link-perfil"
+                    user={user}
+                    onClick={handleLogout}
+                  >
+                    Logout
                   </Link>
                 </NavDropdown>
               ) : (
