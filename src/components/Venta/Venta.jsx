@@ -47,7 +47,7 @@ export const Venta = () => {
         }}
       >
         {user.first_name ? (
-          <Link to={"/favourites"}>
+          <Link to={"/favoritos"}>
             <Button className="buttonFav">
               {" "}
               Favoritos

@@ -20,7 +20,7 @@ export function AdminAllUsers() {
     axios
       .delete(`/api/admin/delete/${id}`, {})
       .then((res) => {
-        console.log("user eliminado", res.data);
+        console.log("user eliminado");
       })
       .catch((error) => console.log(error));
   };
