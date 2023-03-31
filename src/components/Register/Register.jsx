@@ -24,6 +24,7 @@ function BasicExample() {
         password: password,
         first_name: firstName,
         last_name: lastName,
+        phone: phoneNumber
       })
       .then((res) => {
         console.log(res.data);

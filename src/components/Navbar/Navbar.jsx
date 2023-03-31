@@ -17,7 +17,7 @@ function NavScrollExample() {
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
-  }, [user]);
+  }, []);
 
   const handleLogout = () => {
     axios.post("api/user/logout").then(() => {
@@ -59,7 +59,8 @@ function NavScrollExample() {
                 <NavDropdown title={user.first_name} id="basic-nav-dropdown">
                   <NavDropdown.Item>Visitas Agendadas</NavDropdown.Item>
                   <NavDropdown.Item>Favoritos</NavDropdown.Item>
-                  <NavDropdown.Item>Mi Perfil</NavDropdown.Item>
+                  <Link to="/userview" className="nav-link">
+                  Mi Perfil</Link>
                   <NavDropdown.Divider />
                   <Link to="/login" className="link">
                     <NavDropdown.Item user={user} onClick={handleLogout}>
@@ -79,7 +80,7 @@ function NavScrollExample() {
 
                   <Button
                     className="button-position"
-                    href="/login"
+                    href="/register"
                     variant="outline-light "
                   >
                     Registrarme
