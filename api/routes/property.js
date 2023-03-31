@@ -81,7 +81,7 @@ propertyRouter.patch("/update/:id", (req, res) => {
 // });
 
 //ruta para eliminar una propiedad
-propertyRouter.delete("/:id", (req, res) => {
+propertyRouter.delete("/delete/:id", (req, res) => {
   Property.findByPk(req.params.id).then((property) => {
     property.destroy().then(() => res.sendStatus(204));
   });

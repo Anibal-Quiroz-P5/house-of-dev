@@ -17,7 +17,7 @@ function NavScrollExample() {
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
-  }, [user]);
+  }, []);
 
   const handleLogout = () => {
     axios.post("api/user/logout").then(() => {
@@ -49,10 +49,16 @@ function NavScrollExample() {
                 Contacto
               </Link>
               {user.is_admin ? (
-                <NavDropdown title="Admin" id="basic-nav-dropdown">
-                  <NavDropdown.Item>Usuarios</NavDropdown.Item>
-                  <NavDropdown.Item>Citas</NavDropdown.Item>
-                  <NavDropdown.Item>Propiedades</NavDropdown.Item>
+                <NavDropdown title="Panel de Control" id="basic-nav-dropdown">
+                  <Link to="/users" className="nav-link">
+                    Usuarios
+                  </Link>
+                  <Link to="/citas" className="nav-link">
+                    Citas
+                  </Link>
+                  <Link to="/propiedades" className="nav-link">
+                    Propiedades
+                  </Link>
                 </NavDropdown>
               ) : null}
               {user.first_name ? (
@@ -69,21 +75,23 @@ function NavScrollExample() {
                 </NavDropdown>
               ) : (
                 <>
-                  <Button
-                    className="button-position"
-                    href="/login"
-                    variant="outline-light "
-                  >
-                    Iniciar Sesión
-                  </Button>
-
-                  <Button
-                    className="button-position"
-                    href="/login"
-                    variant="outline-light "
-                  >
-                    Registrarme
-                  </Button>
+                  <Link to="/login" className="link">
+                    <Button
+                      className="button-position"
+                      variant="outline-light "
+                    >
+                      Iniciar Sesión
+                    </Button>
+                  </Link>
+                  <Link to="/register" className="link">
+                    {" "}
+                    <Button
+                      className="button-position"
+                      variant="outline-light "
+                    >
+                      Registrarme
+                    </Button>
+                  </Link>
                 </>
               )}
             </Nav>

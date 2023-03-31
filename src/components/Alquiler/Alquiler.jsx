@@ -13,7 +13,7 @@ export const Alquiler = () => {
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
-  }, [user]);
+  }, []);
 
   return (
     <>
