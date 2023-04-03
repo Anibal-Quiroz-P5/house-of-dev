@@ -1,43 +1,74 @@
-import React from "react";
-import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
-import "./Grid.css";
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Card, Form, ListGroup } from "react-bootstrap";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import { Button, Card, Form, Container } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { MdFavoriteBorder } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 
-export const Grid = () => {
-  const [properties, setProperties] = useState([]);
+export const Favoritos = () => {
+  const [favourites, setFavourites] = useState([]);
+  const [user, setUser] = useState({});
+
+  useEffect(() => {
+    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
+    setUser(userLogueado);
+  }, []);
 
   useEffect(() => {
     axios
-      .get("/api/property/")
+      .get(`/api/favourites/${user.id}/favourites`)
       .then((res) => {
-        console.log(res.data);
-        setProperties(res.data);
+        console.log("favs", res.data.properties);
+        setFavourites(res.data.properties);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [user]);
+
+  console.log("userstate", user);
+  console.log("favorui¡rtesstate", favourites);
 
   return (
     <section>
+      <div
+        style={{
+          width: "80%",
+          margin: "0 auto",
+        }}
+      >
+        <Row>
+          <Col
+            sm={12}
+            style={{
+              border: "2px solid #123acb",
+              marginTop: "3%",
+              marginBottom: "3%",
+              padding: "10px",
+              color: "#123acb",
+              fontFamily: "Montserrat",
+              fontWeight: "900",
+            }}
+          >
+            MIS FAVORITOS - TOTAL : ({favourites.length})
+          </Col>
+        </Row>
+      </div>
+
       <Container className="cont-grid">
         <Row className="row-grid">
-          {properties.map((propiedad) => {
+          {favourites.map((propiedad) => {
             return (
               <Col className="col-grid col-md-offset-2" sm={6}>
                 <Card.Body>
                   <Row>
                     <Col className="col-grid" sm={12}>
-                      <Card.Title>{propiedad.title}</Card.Title>
+                      <Card.Title>{favourites.title}</Card.Title>
                     </Col>
                     <Col className="col-grid" sm={6}>
                       <Form.Text className="text-muted">
@@ -81,13 +112,10 @@ export const Grid = () => {
                 </Card.Body>
                 <Card.Body className="botones-div">
                   <Button className="botones-cta">
-                    <MdFavoriteBorder className="boton-cta" />
-                  </Button>
-                  <Button className="botones-cta">
                     <BiPhoneCall className="boton-cta" />
                   </Button>
                   <Link to={`/property/${propiedad.id}`}>
-                    <Button className="buttonVerMas">VER MÁS</Button>
+                    <Button className="buttonVerMas">ELIMINAR</Button>
                   </Link>
                 </Card.Body>
               </Col>

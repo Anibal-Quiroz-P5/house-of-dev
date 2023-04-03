@@ -67,7 +67,7 @@ userRouter.patch("/update/:id", (req, res) => {
       user
         .update(inputsUpdate)
         .then(() => {
-          res.status(200).send("Cambios actualizados");
+          res.status(200).send(user);
         })
         .catch((err) => err);
     }

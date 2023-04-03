@@ -5,6 +5,13 @@
 }
 .link {
   text-decoration: none;
+  color: black;
+}
+.link-perfil {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  margin-left: 4%;
 }
 
 .button-position {

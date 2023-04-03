@@ -4,12 +4,17 @@ import "./Property.css";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+// import { useDispatch, useSelector } from "react-redux";
+// import { addToFavs } from "../../state/user";
 
 export const Property = () => {
   const { id } = useParams();
   const [properties, setProperties] = useState([]);
   const [user, setUser] = useState({});
-  const navigate = useNavigate();
+  const [favourites, setFavourites] = useState([]);
+
+  // const dispatch = useDispatch();
+  // const userRedux = useSelector((state) => state.user);
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -27,6 +32,16 @@ export const Property = () => {
         console.log(err);
       });
   }, [id]);
+
+  const handleAddFavorites = (id) => {
+    axios
+      .post(`/api/favourites/${user.id}/add/${id}`)
+      .then((res) => {
+        console.log("agregado correctamente", res.data);
+        setFavourites(res.data);
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -57,7 +72,11 @@ export const Property = () => {
           <Card.Body>
             {user.first_name ? (
               <>
-                <Button className="buttonStyle" type="submit">
+                <Button
+                  className="buttonStyle"
+                  type="submit"
+                  onClick={() => handleAddFavorites(properties.id)}
+                >
                   Favorito
                 </Button>
                 <Link to={`/properties/change/${id}`}>

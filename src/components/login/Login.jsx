@@ -9,7 +9,6 @@ function Login() {
   const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  console.log("user", user);
   const navigate = useNavigate();
 
   const handleSubmit = (e) => {
