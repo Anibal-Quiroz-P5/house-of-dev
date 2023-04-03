@@ -10,27 +10,6 @@ favouritesRouter.get("/favourites", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
-//con tabla intermedia
-/* router.post("/:userId/add/:carId", (req, res) => {
-  const { userId, carId } = req.params;
-
-  User.findOne({ where: { id: userId } })
-    .then((user) => {
-      Car.findOne({ where: { id: carId } })
-        .then((car) => {
-          user
-            .addCar(car)
-            .then(() => {
-              res.status(201).send("Auto agregado como favorito");
-            })
-            .catch((err) => res.send(err));
-        })
-        .catch((err) => res.send(err));
-    })
-    .catch((err) => res.status(404).send("Usuario no encontrado"));
-}); */
-
-//sin tabla intermedia
 //que un usuario agregue un favorito
 favouritesRouter.post("/:userId/add/:propertyId", (req, res) => {
   console.log("POST A FAVVVVVVV");
@@ -50,18 +29,6 @@ favouritesRouter.post("/:userId/add/:propertyId", (req, res) => {
     .catch((err) => res.status(404).send("Usuario no encontrado"));
 });
 
-//con tabla intermedia
-/* router.get("/:userId/favourites", (req, res) => {
-  const userId = req.params.userId;
-
-  User.findOne({ where: { id: userId }, include: Car })
-    .then((user) => {
-      res.status(200).send(user);
-    })
-    .catch((err) => res.status(404).send("Usuario no encontrado"));
-}); */
-
-//sin tabla intermedia
 //buscar los favoritos de un usuario
 favouritesRouter.get("/:userId/favourites", (req, res) => {
   console.log("gettttttt a favoritos");
