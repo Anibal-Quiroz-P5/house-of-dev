@@ -11,6 +11,7 @@ import { Property } from "./commons/Property/Property";
 import { Venta } from "./components/Venta/Venta";
 import { AdminProps } from "./components/AdminProps/AdminProps";
 import { AdminAllUsers } from "./components/AdminAllUsers/AdminAllUsers";
+import EditProperty from "./components/EditProperty/EditProperty";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/venta" element={<Venta />} />
         <Route path="/propiedades" element={<AdminProps />} />
         <Route path="/users" element={<AdminAllUsers />} />
+        <Route path="/edit" element={<EditProperty />} />
       </Routes>
     </div>
   );

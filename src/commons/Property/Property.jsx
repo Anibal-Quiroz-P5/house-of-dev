@@ -66,7 +66,7 @@ export const Property = () => {
               </>
             ) : null}
           </Card.Body>
-          {/* {user.is_admin ? (
+          {user.is_admin ? (
             <>
               <Link to={`/properties/change/${id}`}>
                 <Button className="buttonStyle">Editar Propiedad</Button>
@@ -75,7 +75,7 @@ export const Property = () => {
                 <Button className="buttonStyle">Eliminar Propiedad</Button>
               </Link>
             </>
-          ) : null} */}
+          ) : null}
         </Card.Body>
       </Container>
     </>
