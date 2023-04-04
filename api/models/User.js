@@ -76,13 +76,12 @@ User.beforeCreate((user) => {
 });
 
 /* User.beforeUpdate((user) => {
-
+  console.log("ENTRANDO AL BEFOREUPDATEEEE");
   const salt = bcrypt.genSaltSync(9);
   user.salt = salt;
   return user.hash(user.password, user.salt).then((hash) => {
     user.password = hash;
   });
-
 }); */
 
 module.exports = User;

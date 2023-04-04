@@ -10,6 +10,8 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { NavItem } from "react-bootstrap";
+import { Search } from "../../commons/Search/Search";
+
 
 function NavScrollExample() {
   const [user, setUser] = useState({});
@@ -25,6 +27,41 @@ function NavScrollExample() {
       setUser({});
     });
   };
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+
+  const [query, setQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([])
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  
+  const handleSearch = () => {
+    axios.get(`/api/property/buscar/${query}`)
+    .then(response => {
+      console.log('Respuesta de búsqueda:', response.data);
+      setSearchResults(response.data)
+
+    })
+    .catch(error => {
+      console.log('Error al realizar la búsqueda:', error);
+    });
+
+    console.log('Realizando búsqueda con la query:', query);
+  };
+
+  console.log("RESULTADOOOO", searchResults);
+
+  const handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+/* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+  
 
   return (
     <>
@@ -106,6 +143,25 @@ function NavScrollExample() {
               )}
             </Nav>
           </Navbar.Collapse>
+
+          <Link to={"/search"}>
+                <Form className="d-flex" >
+            <Form.Control
+            type="search"
+            placeholder="Busca tu propiedad"
+            className="me-2"
+            aria-label="Search"
+            value={query}
+            onChange={handleInputChange}
+            keypress={handleKeyPress}
+            />
+
+            <Button variant="outline-light"  onClick={handleSearch}>Buscar</Button>
+            </Form>        
+                </Link>
+
+
+
         </Container>
       </Navbar>
       {/* <nav className="navbar navbar-expand-lg navbar-light">
