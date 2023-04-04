@@ -11,12 +11,15 @@ const propertyRouter = express.Router();
 //     })
 //     .catch((err) => console.log(err));
 // });
-//crear una sola propiedad
+//crear una propiedad
 propertyRouter.post("/add", (req, res) => {
+  console.log("entre a la ruta de agregar");
   Property.create(req.body).then((property) => {
+    console.log("SOY PROPERTY", property);
     res.status(201).send(property);
   });
 });
+
 //traer todas las propiedades
 propertyRouter.get("/", (req, res) => {
   Property.findAll()
@@ -26,6 +29,7 @@ propertyRouter.get("/", (req, res) => {
 
 //traer una sola propiedad
 propertyRouter.get("/:id", (req, res) => {
+  console.log("TRAJE UNA SOLA PROPIEDAD");
   const id = req.params.id;
   Property.findOne({ where: { id } })
     .then((property) => {

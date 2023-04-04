@@ -1,31 +1,30 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 
-const EditProperty = () => {
+const AddProperty = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
-
   const [title, setTitle] = useState("");
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [country, setCountry] = useState("");
   const [description, setDescription] = useState("");
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState();
   const [image, setImage] = useState([]);
-  const [rooms, setRooms] = useState(0);
-  const [area, setArea] = useState(0);
-  const [bedroom, setBedroom] = useState(0);
-  const [bathroom, setBathroom] = useState(0);
+  const [rooms, setRooms] = useState();
+  const [area, setArea] = useState();
+  const [bedroom, setBedroom] = useState();
+  const [bathroom, setBathroom] = useState();
   const [condition, setCondition] = useState("");
   const [type, setType] = useState("");
 
-  const handleEdit = (e) => {
+  const handleAdd = (e) => {
     e.preventDefault();
+    console.log("estoy por crear una propiedad");
     axios
-      .patch(
-        `/api/property/update/${id}`,
+      .post(
+        "/api/property/add",
         {
           title,
           address,
@@ -55,110 +54,120 @@ const EditProperty = () => {
 
   return (
     <div>
-      <h1>Editar una propiedad</h1>
-      <form onSubmit={handleEdit}>
-        <label>Título:</label>
+      <br />
+      <br />
+      <div>Agregar una propiedad</div>
+      <br /> <br />
+      <form onSubmit={handleAdd}>
+        <label>Título:</label> <br /> <br />
         <input
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />{" "}
-        <br />
-        <label>Dirección:</label>
+        <br /> <br />
+        <label>Dirección:</label> <br /> <br />
         <input
           type="text"
           value={address}
           onChange={(e) => setAddress(e.target.value)}
         />{" "}
         <br />
-        <label>Ciudad:</label>
+        <br />
+        <label>Ciudad:</label> <br /> <br />
         <input
           type="text"
           value={city}
           onChange={(e) => setCity(e.target.value)}
         />{" "}
         <br />
-        <label>Provincia:</label>
+        <br />
+        <label>Provincia:</label> <br /> <br />
         <input
           type="text"
           value={state}
           onChange={(e) => setState(e.target.value)}
         />{" "}
-        <br />
-        <label>País:</label>
+        <br /> <br />
+        <label>País:</label> <br /> <br />
         <input
           type="text"
           value={country}
           onChange={(e) => setCountry(e.target.value)}
         />{" "}
         <br />
-        <label>Descipción:</label>
+        <br />
+        <label>Descipción:</label> <br /> <br />
         <input
           type="text"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />{" "}
-        <br />
-        <label>Precio:</label>
+        <br /> <br />
+        <label>Precio:</label> <br /> <br />
         <input
           type="text"
           value={price}
           onChange={(e) => setPrice(e.target.value)}
         />{" "}
         <br />
-        <label>Imágenes:</label>
+        <br />
+        <label>Imágenes:</label> <br /> <br />
         <input
           type="text"
           value={image}
           onChange={(e) => setImage(e.target.value)}
         />{" "}
-        <br />
-        <label>Ambientes:</label>
+        <br /> <br />
+        <label>Ambientes:</label> <br /> <br />
         <input
           type="text"
           value={rooms}
           onChange={(e) => setRooms(e.target.value)}
         />{" "}
-        <br />
-        <label>Área:</label>
+        <br /> <br />
+        <label>Área:</label> <br /> <br />
         <input
           type="text"
           value={area}
           onChange={(e) => setArea(e.target.value)}
         />{" "}
         <br />
-        <label>Habitaciones:</label>
+        <br />
+        <label>Habitaciones:</label> <br /> <br />
         <input
           type="text"
           value={bedroom}
           onChange={(e) => setBedroom(e.target.value)}
         />{" "}
         <br />
-        <label>Baños:</label>
+        <br />
+        <label>Baños:</label> <br /> <br />
         <input
           type="text"
           value={bathroom}
           onChange={(e) => setBathroom(e.target.value)}
         />{" "}
-        <br />
-        <label>Condición:</label>
+        <br /> <br />
+        <label>Condición:</label> <br /> <br />
         <input
           type="text"
           value={condition}
           onChange={(e) => setCondition(e.target.value)}
         />{" "}
         <br />
-        <label>Tipo:</label>
+        <br />
+        <label>Tipo:</label> <br /> <br />
         <input
           type="text"
           value={type}
           onChange={(e) => setType(e.target.value)}
         />{" "}
-        <br />
-        <button>Editar</button>
+        <br /> <br /> <br />
+        <button>Agregar</button>
       </form>
     </div>
   );
 };
 
-export default EditProperty;
+export default AddProperty;

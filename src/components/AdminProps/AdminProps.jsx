@@ -11,21 +11,31 @@ import { BiBed, BiBath } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { Navigate, useNavigate, useParams } from "react-router";
 
 export const AdminProps = () => {
   const [properties, setProperties] = useState([]);
+  const navigate = useNavigate();
+  const { id } = useParams();
 
   useEffect(() => {
     axios
       .get("/api/property")
       .then((res) => {
-        console.log(res.data);
         setProperties(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [properties]);
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`/api/property/delete/${id}`, { withCredentials: true })
+      .then((res) => {
+        console.log("ENTRE AL THEN", res);
+      });
+  };
 
   return (
     <section>
@@ -51,12 +61,21 @@ export const AdminProps = () => {
             PANEL DE PROPIEDADES
           </Col>
         </Row>
+        <Link to="/agregar">
+          <Button className="buttonEditar">
+            <FiEdit className="boton-cta" /> AGREGAR PROPIEDADES
+          </Button>
+        </Link>
       </div>
       <Container className="cont-grid">
         <Row className="row-grid">
           {properties.map((propiedad) => {
             return (
-              <Col className="col-grid col-md-offset-2" sm={6}>
+              <Col
+                key={propiedad.id}
+                className="col-grid col-md-offset-2"
+                sm={6}
+              >
                 <Card.Body>
                   <Row>
                     <Col className="col-grid" sm={12}>
@@ -107,16 +126,20 @@ export const AdminProps = () => {
                   <Button className="botones-cta">
                     <BiPhoneCall className="boton-cta" />
                   </Button> */}
-                  <Link to={`/properties/${propiedad.id}`}>
+                  <Link to={`/edit/${propiedad.id}`}>
                     <Button className="buttonEditar">
                       <FiEdit className="boton-cta" /> EDITAR
                     </Button>
                   </Link>
-                  <Link to={"/propiedades"}>
-                    <Button className="buttonEditar">
-                      <FiTrash2 className="boton-cta" /> ELIMINAR
-                    </Button>
-                  </Link>
+
+                  <Button
+                    className="buttonEditar"
+                    onClick={() => {
+                      handleDelete(propiedad.id);
+                    }}
+                  >
+                    <FiTrash2 className="boton-cta" /> ELIMINAR
+                  </Button>
                 </Card.Body>
               </Col>
             );
