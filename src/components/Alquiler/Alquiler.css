@@ -19,3 +19,8 @@
   border-radius: 12px;
   margin-left: 2px;
 }
+
+.row-filter {
+  display: flex;
+  justify-content: center;
+}

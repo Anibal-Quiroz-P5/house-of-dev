@@ -11,14 +11,11 @@ import { Property } from "./commons/Property/Property";
 import { Venta } from "./components/Venta/Venta";
 import { AdminProps } from "./components/AdminProps/AdminProps";
 import { AdminAllUsers } from "./components/AdminAllUsers/AdminAllUsers";
-
 import EditProperty from "./components/EditProperty/EditProperty";
-
 import { useState, useEffect } from "react";
 import { Favoritos } from "./components/Favoritos/Favoritos";
 import AddProperty from "./components/EditProperty/AddProperty";
 import EditUser from "./components/EditUser/EditUser";
-import { Search } from "./commons/Search/Search";
 
 function App() {
   const [user, setUser] = useState({});
@@ -42,9 +39,6 @@ function App() {
         <Route path="/venta" element={<Venta />} />
         <Route path="/agregar" element={<AddProperty />} />
         <Route path="/edit/:id" element={<EditProperty />} />
-
-        <Route path="/search" element={<Search />} />
-
 
         <Route path="/favoritos" element={<Favoritos />} />
         {user.is_admin ? (
