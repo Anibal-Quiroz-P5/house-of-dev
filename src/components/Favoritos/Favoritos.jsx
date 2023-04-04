@@ -4,10 +4,8 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { Col, Row } from "react-bootstrap";
 import { Button, Card, Form, Container } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
-import { MdFavoriteBorder } from "react-icons/md";
 import { SlLocationPin } from "react-icons/sl";
 
 export const Favoritos = () => {
@@ -19,11 +17,12 @@ export const Favoritos = () => {
     setUser(userLogueado);
   }, []);
 
+  // traigo todos los fav un usuario
+
   useEffect(() => {
     axios
       .get(`/api/favourites/${user.id}/favourites`)
       .then((res) => {
-        console.log("favs", res.data.properties);
         setFavourites(res.data.properties);
       })
       .catch((err) => {
@@ -31,8 +30,32 @@ export const Favoritos = () => {
       });
   }, [user]);
 
-  console.log("userstate", user);
-  console.log("favorui¡rtesstate", favourites);
+  // useEffect((id) => {
+  //   axios
+  //     .get(`/api/property/${id}`)
+  //     .then((res) => {
+  //       console.log("property por id", res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }, []);
+
+  //deleteo por id de usuario y id de propiedad
+
+  const handleDeleteFav = (id) => {
+    axios
+      .delete(`/api/favourites/${user.id}/delete/${id}`)
+      .then((res) => {
+        {
+          const nuevosFavoritos = favourites.filter(
+            (favorito) => favorito.id !== id
+          );
+          setFavourites(nuevosFavoritos);
+        }
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <section>
@@ -114,9 +137,12 @@ export const Favoritos = () => {
                   <Button className="botones-cta">
                     <BiPhoneCall className="boton-cta" />
                   </Button>
-                  <Link to={`/property/${propiedad.id}`}>
-                    <Button className="buttonVerMas">ELIMINAR</Button>
-                  </Link>
+                  <Button
+                    className="buttonVerMas"
+                    onClick={() => handleDeleteFav(propiedad.id)}
+                  >
+                    ELIMINAR
+                  </Button>
                 </Card.Body>
               </Col>
             );

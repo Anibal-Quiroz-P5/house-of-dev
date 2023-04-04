@@ -12,7 +12,6 @@ favouritesRouter.get("/favourites", (req, res) => {
 
 //que un usuario agregue un favorito
 favouritesRouter.post("/:userId/add/:propertyId", (req, res) => {
-  console.log("POST A FAVVVVVVV");
   const { userId, propertyId } = req.params;
   User.findOne({ where: { id: userId } })
     .then((user) => {
@@ -31,7 +30,6 @@ favouritesRouter.post("/:userId/add/:propertyId", (req, res) => {
 
 //buscar los favoritos de un usuario
 favouritesRouter.get("/:userId/favourites", (req, res) => {
-  console.log("gettttttt a favoritos");
   const { userId } = req.params;
   User.findOne({
     where: { id: userId },
