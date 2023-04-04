@@ -16,6 +16,9 @@ import EditProperty from "./components/EditProperty/EditProperty";
 
 import { useState, useEffect } from "react";
 import { Favoritos } from "./components/Favoritos/Favoritos";
+import EditUser from "./components/EditUser/EditUser";
+import { Search } from "./commons/Search/Search";
+
 
 
 function App() {
@@ -36,8 +39,9 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/userview" element={<UserView />} />
         <Route path="/alquiler" element={<Alquiler />} />
+        <Route path="/edituser" element={<EditUser />} />
         <Route path="/venta" element={<Venta />} />
-
+        <Route path="/search" element={<Search />} />
         <Route path="/edit" element={<EditProperty />} />
 
         <Route path="/favoritos" element={<Favoritos />} />
