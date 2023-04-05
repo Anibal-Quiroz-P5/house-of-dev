@@ -39,7 +39,7 @@ function App() {
         <Route path="/venta" element={<Venta />} />
         <Route path="/agregar" element={<AddProperty />} />
         <Route path="/edit/:id" element={<EditProperty />} />
-
+       
         <Route path="/favoritos" element={<Favoritos />} />
         {user.is_admin ? (
           <Route path="/propiedades" element={<AdminProps />} />
