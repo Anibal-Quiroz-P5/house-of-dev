@@ -19,7 +19,6 @@ export const Grid = () => {
     axios
       .get("/api/property/")
       .then((res) => {
-        console.log(res.data);
         setProperties(res.data);
       })
       .catch((err) => {
