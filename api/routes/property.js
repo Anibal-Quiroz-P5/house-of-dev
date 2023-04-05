@@ -174,91 +174,65 @@ propertyRouter.get("/rooms/:rooms", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-
-///////////////////////////////////////////////////////////
-
-//  RUTA PARA BUSCAR UNA PALABRA EN LA COLUMNA DESCRIPCIÓN
-
-///////////////////////////////////////////////////////////
-
-// propertyRouter.get('/buscar/:palabra', (req, res) => {
-//    console.log("ENTREEE A  BUSCAR PALABRAAA" , req.params.palabra);
-//   Property.findAll({
-//     where: {
-//       description: {
-//         [Op.iLike]: `%${req.params.palabra}%`
-//       }
-//     }
-//   })
-//   .then(propiedades => {
-//     res.json(propiedades);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     res.status(500).send('Hubo un error en el servidor');
-//   });
-// });
-
-
-propertyRouter.get('/buscar/:palabra', (req, res) => {
+propertyRouter.get("/buscar/:palabra", (req, res) => {
   Property.findAll({
     where: {
       [Op.or]: [
         {
           title: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         {
           address: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         {
           city: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         {
           state: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         {
           country: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         {
           description: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         {
           condition: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
         },
         /* {
           price: {
             [Op.iLike]: `%${req.params.palabra}%`
           }
-        }, */ 
+        }, */
         {
           type: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
-        }        
-      ]
-    }
+            [Op.iLike]: `%${req.params.palabra}%`,
+          },
+        },
+      ],
+    },
   })
-  .then(propiedades => {
-    res.json(propiedades);
-  })
-  .catch(err => {
-    console.error(err);
-    res.status(500).send('Hubo un error en el servidor');
-  });
+    .then((propiedades) => {
+      res.json(propiedades);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).send("Hubo un error en el servidor");
+    });
 });
 
 ///////////////////////////////////////////////////////////
