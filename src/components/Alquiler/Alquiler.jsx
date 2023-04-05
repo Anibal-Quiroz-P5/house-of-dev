@@ -97,7 +97,36 @@ export const Alquiler = () => {
       });
   };
 
+  ///     SEARCH
+
+  const [searchResults, setSearchResults] = useState([]);
+  const [query, setQuery] = useState("");
+
+  const handleInputChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const handleSearch = () => {
+    axios
+      .get(`/api/property/buscar/${query}`)
+      .then((response) => {
+        console.log("Respuesta de búsqueda:", response.data);
+      setProperties(response.data);
+      })
+      .catch((error) => {
+        console.log("Error al realizar la búsqueda:", error);
+      });
+        console.log("Realizando búsqueda con la query:", query);
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
+    }
+  };
+
   ///
+
   return (
     <>
       <div
@@ -122,6 +151,24 @@ export const Alquiler = () => {
           </Col>
         </Row>
       </div>
+
+      <Container style={{marginTop :"3%"}}>
+        <Form className="d-flex">
+          <Form.Control
+            type="search"
+            placeholder="Busca tu propiedad"
+            className="me-2"
+            aria-label="Search"
+            value={query}
+            onChange={handleInputChange}
+            handleKeyUp={handleKeyPress}
+          />
+          <Button variant="outline-light" onClick={handleSearch}>
+            Buscar
+          </Button>
+        </Form>
+      </Container>
+
       <Row className="row-filter">
         <Col sm={6}>
           <Accordion

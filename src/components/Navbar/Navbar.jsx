@@ -28,7 +28,7 @@ function NavScrollExample() {
 
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
-  const [query, setQuery] = useState("");
+/*   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleInputChange = (e) => {
@@ -56,7 +56,7 @@ function NavScrollExample() {
       handleSearch();
     }
   };
-
+ */
   /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
 
   return (
@@ -139,7 +139,7 @@ function NavScrollExample() {
             </Nav>
           </Navbar.Collapse>
 
-          <Form className="d-flex">
+{/*           <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Busca tu propiedad"
@@ -161,7 +161,7 @@ function NavScrollExample() {
                 console.log(propiedad);
               }
             })}
-          </div>
+          </div> */}
         </Container>
       </Navbar>
       {/* <nav className="navbar navbar-expand-lg navbar-light">
