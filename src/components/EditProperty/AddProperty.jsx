@@ -21,25 +21,24 @@ const AddProperty = () => {
 
   const handleAdd = (e) => {
     e.preventDefault();
-    console.log("estoy por crear una propiedad");
     axios
       .post(
         "/api/property/add",
         {
-          title,
-          address,
-          city,
-          state,
-          country,
-          description,
-          price,
-          image,
-          rooms,
-          area,
-          bedroom,
-          bathroom,
-          condition,
-          type,
+          title: title,
+          address: address,
+          city: city,
+          state: state,
+          country: country,
+          description: description,
+          price: price,
+          image: image[0].split(","),
+          rooms: rooms,
+          area: area,
+          bedroom: bedroom,
+          bathroom: bathroom,
+          condition: condition,
+          type: type,
         },
         { withCredentials: true }
       )
@@ -116,7 +115,7 @@ const AddProperty = () => {
         <input
           type="text"
           value={image}
-          onChange={(e) => setImage(e.target.value)}
+          onChange={(e) => setImage([e.target.value])}
         />{" "}
         <br /> <br />
         <label>Ambientes:</label> <br /> <br />

@@ -174,30 +174,6 @@ propertyRouter.get("/rooms/:rooms", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-///////////////////////////////////////////////////////////
-
-//  RUTA PARA BUSCAR UNA PALABRA EN LA COLUMNA DESCRIPCIÓN
-
-///////////////////////////////////////////////////////////
-
-// propertyRouter.get('/buscar/:palabra', (req, res) => {
-//    console.log("ENTREEE A  BUSCAR PALABRAAA" , req.params.palabra);
-//   Property.findAll({
-//     where: {
-//       description: {
-//         [Op.iLike]: `%${req.params.palabra}%`
-//       }
-//     }
-//   })
-//   .then(propiedades => {
-//     res.json(propiedades);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//     res.status(500).send('Hubo un error en el servidor');
-//   });
-// });
-
 propertyRouter.get("/buscar/:palabra", (req, res) => {
   Property.findAll({
     where: {

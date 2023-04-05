@@ -36,7 +36,7 @@ Property.init(
     },
     image: {
       type: S.ARRAY(S.STRING),
-      allowNull: false,
+      // allowNull: false,
     },
     rooms: {
       type: S.INTEGER,
