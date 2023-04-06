@@ -1,6 +1,7 @@
 # House of Dev
 
 Este proyecto fue diseñado para una inmobiliaria, donde un usuario pueda ver las propiedades que hay disponibles, guardarlas en sus favoritos y si desean sacar una cita para poder visitarla.
+Realizado por Guido Bonesi, Anibal Quiroz y Bel
 
 ## Tecnologías utilizadas
 
