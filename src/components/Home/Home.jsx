@@ -50,11 +50,6 @@ export const Home = () => {
               </div>
             </div>
           </div>
-          {/* <input
-            type="text"
-            placeholder="UBICACIÓN"
-            className="input-ubicacion"
-          /> */}
           <div>
             {value == "comprar" ? (
               <Link to="/venta">

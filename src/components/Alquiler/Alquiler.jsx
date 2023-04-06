@@ -42,15 +42,6 @@ export const Alquiler = () => {
       });
   }, []);
 
-  ///
-
-  /// User ///
-  // useEffect(() => {
-  //   const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
-  //   setUser(userLogueado);
-  // }, []);
-  ///
-
   /// Filtros por Tipo ///
   const handleChange = (e) => {
     setTipoDePropiedad(e.target.value);
@@ -121,18 +112,17 @@ export const Alquiler = () => {
       });
     console.log("Realizando búsqueda con la query:", query);
   };
-  // revisar
-  // const handleKeyPress = (e) => {
-  //   if (e.key === "Enter") {
-  //     handleSearch();
-  //   }
-  // };
+  //añadir a favoritos
+  const handleAddFavorites = (id) => {
+    axios
+      .post(`/api/favourites/${user.id}/add/${id}`)
+      .then((res) => {
+        console.log("agregado correctamente", res.data);
+        dispatch(addToFavs(res.data));
+      })
+      .catch((error) => console.log(error));
+  };
 
-  ///
-
-  //// ADD TO FAV ///
-
-  /////
   return (
     <>
       <div
@@ -379,7 +369,6 @@ export const Alquiler = () => {
                 aria-label="Search"
                 value={query}
                 onChange={handleInputChange}
-                // handleKeyUp={handleKeyPress}
                 style={{
                   border: "2px solid #123acb",
                   borderRadius: "0px",
@@ -470,9 +459,13 @@ export const Alquiler = () => {
                     </Row>
                   </Card.Body>
                   <Card.Body className="botones-div">
-                    <Button className="botones-cta">
+                    {/* <Button
+                      className="botones-cta"
+                      type="submit"
+                      onClick={() => handleAddFavorites(properties.id)}
+                    >
                       <MdFavoriteBorder className="boton-cta" />
-                    </Button>
+                    </Button> */}
                     <Button className="botones-cta">
                       <BiPhoneCall className="boton-cta" />
                     </Button>

@@ -15,12 +15,10 @@ export const Favoritos = () => {
   const user = useSelector((state) => state.user);
   const [favourites, setFavourites] = useState([]);
 
-  // esto se podria sacar
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
   }, []);
-  ///
 
   // traigo todos los fav un usuario
 
@@ -50,21 +48,6 @@ export const Favoritos = () => {
       })
       .catch((error) => console.log(error));
   };
-  //
-
-  // Intento de delete con redux, deletea ok pero no renderiza automatico//
-
-  // const handleDeleteFav = (id) => {
-  //   axios
-  //     .delete(`/api/favourites/${user.id}/delete/${id}`)
-  //     .then((res) => {
-  //       console.log("propiedad eliminada", res.data);
-  //       dispatch(removeFromFavs(res.data));
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
-  ////
 
   return (
     <section>
