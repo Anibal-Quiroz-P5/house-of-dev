@@ -12,18 +12,23 @@ import { Venta } from "./components/Venta/Venta";
 import { AdminProps } from "./components/AdminProps/AdminProps";
 import { AdminAllUsers } from "./components/AdminAllUsers/AdminAllUsers";
 import EditProperty from "./components/EditProperty/EditProperty";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { Favoritos } from "./components/Favoritos/Favoritos";
 import AddProperty from "./components/EditProperty/AddProperty";
 import EditUser from "./components/EditUser/EditUser";
-//import Turner from "./components/Turner/Turner";
+
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "./state/user";
+import { Grid } from "./commons/Grid/Grid";
+
 
 function App() {
-  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
-    setUser(userLogueado);
+    dispatch(setUser(userLogueado));
   }, []);
 
   return (
@@ -40,7 +45,7 @@ function App() {
         <Route path="/venta" element={<Venta />} />
         <Route path="/agregar" element={<AddProperty />} />
         <Route path="/edit/:id" element={<EditProperty />} />
-        {/* <Route path="/agendar-cita" element={<Turner />} /> */}
+
         <Route path="/favoritos" element={<Favoritos />} />
         {user.is_admin ? (
           <Route path="/propiedades" element={<AdminProps />} />
@@ -48,6 +53,9 @@ function App() {
         {user.is_admin ? (
           <Route path="/users" element={<AdminAllUsers />} />
         ) : null}
+        <Route path="/propiedades" element={<AdminProps />} />
+        <Route path="/users" element={<AdminAllUsers />} />
+        <Route path="/grid" element={<Grid />} />
       </Routes>
     </div>
   );

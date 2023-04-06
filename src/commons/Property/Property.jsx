@@ -4,23 +4,29 @@ import "./Property.css";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
+
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
-// import { useDispatch, useSelector } from "react-redux";
-// import { addToFavs } from "../../state/user";
+
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavs, setUser } from "../../state/user";
+
 
 export const Property = () => {
   const { id } = useParams();
   const [properties, setProperties] = useState([]);
-  const [user, setUser] = useState({});
+  // const [user, setUser] = useState({});
   const [favourites, setFavourites] = useState([]);
+
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isScheduling, setIsScheduling] = useState(false);
-  // const dispatch = useDispatch();
-  // const userRedux = useSelector((state) => state.user);
+
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -44,7 +50,7 @@ export const Property = () => {
       .post(`/api/favourites/${user.id}/add/${id}`)
       .then((res) => {
         console.log("agregado correctamente", res.data);
-        setFavourites(res.data);
+        dispatch(addToFavs(res.data));
       })
       .catch((error) => console.log(error));
   };

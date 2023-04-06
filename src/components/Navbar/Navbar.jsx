@@ -1,63 +1,26 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import "./Navbar.css";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
-import { NavItem } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../../state/user";
 
 function NavScrollExample() {
-  const [user, setUser] = useState({});
-
-  useEffect(() => {
-    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
-    setUser(userLogueado);
-  }, []);
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     axios.post("api/user/logout").then(() => {
       localStorage.removeItem("user");
-      setUser({});
+      dispatch(setUser({}));
     });
   };
 
-  /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
-
-/*   const [query, setQuery] = useState("");
-  const [searchResults, setSearchResults] = useState([]);
-
-  const handleInputChange = (e) => {
-    setQuery(e.target.value);
-  };
-
-  const handleSearch = () => {
-    axios
-      .get(`/api/property/buscar/${query}`)
-      .then((response) => {
-        console.log("Respuesta de búsqueda:", response.data);
-        setSearchResults(response.data);
-      })
-      .catch((error) => {
-        console.log("Error al realizar la búsqueda:", error);
-      });
-
-    console.log("Realizando búsqueda con la query:", query);
-  };
-
-  console.log("RESULTADOOOO", searchResults);
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
- */
-  /* XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX */
+  const user = useSelector((state) => state.user);
 
   return (
     <>
@@ -139,7 +102,7 @@ function NavScrollExample() {
             </Nav>
           </Navbar.Collapse>
 
-{/*           <Form className="d-flex">
+          {/*           <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Busca tu propiedad"
