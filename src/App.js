@@ -16,9 +16,11 @@ import { useEffect } from "react";
 import { Favoritos } from "./components/Favoritos/Favoritos";
 import AddProperty from "./components/EditProperty/AddProperty";
 import EditUser from "./components/EditUser/EditUser";
+
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
 import { Grid } from "./commons/Grid/Grid";
+
 
 function App() {
   const dispatch = useDispatch();
@@ -43,6 +45,7 @@ function App() {
         <Route path="/venta" element={<Venta />} />
         <Route path="/agregar" element={<AddProperty />} />
         <Route path="/edit/:id" element={<EditProperty />} />
+
         <Route path="/favoritos" element={<Favoritos />} />
         {user.is_admin ? (
           <Route path="/propiedades" element={<AdminProps />} />

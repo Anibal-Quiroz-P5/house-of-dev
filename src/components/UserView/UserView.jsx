@@ -9,7 +9,7 @@ export const UserView = () => {
   const [LastName, setLastName] = useState("");
   const [user, setUser] = useState([]);
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
   /* const [isEditing, setIsEditing] = useState(false); */
 
   const [miVariable, setMiVariable] = useState(1); // Valor inicial de miVariable = 1  "NO" ME DEJA EDITAR
@@ -39,7 +39,7 @@ export const UserView = () => {
         first_name: FirstName,
         last_name: LastName,
         phone: phone,
-        password: password
+        password: password,
       })
       .then((res) => {
         /* dispatch(setUser(res.data)); */
@@ -55,10 +55,10 @@ export const UserView = () => {
   };
 
   return (
-<div>
-   {/*  <div className="container-mayor"> */}
+    <div>
+      {/*  <div className="container-mayor"> */}
       <div className="container rectangle_108">
-        <form  /* method="post"  */ onSubmit={handleSubmitt}>
+        <form /* method="post"  */ onSubmit={handleSubmitt}>
           {" "}
           {/* FORMULARIO */}
           <div className="rectangle_23">
@@ -213,9 +213,8 @@ export const UserView = () => {
                   </div>
                 </div>
 
-
                 <div className="row">
-{/*                   <div className="col-md-6">
+                  {/*                   <div className="col-md-6">
                     <label class="tipografia">Contraseña</label>
 
                    {miVariable === 1 ? (
@@ -246,27 +245,18 @@ export const UserView = () => {
                     )}
                   </div> */}
                 </div>
-
-
-
-
-
-
               </div>
             </div>
           </div>
         </form>
         <div>
-          <button type="submit" onClick={handleSubmit}>
+          {/* <button type="submit" onClick={handleSubmit}>
             {" "}
             SEND EDITED
-          </button>
+          </button> */}
         </div>
       </div>
-   {/*  </div> */}
-
-</div>
-
-
+      {/*  </div> */}
+    </div>
   );
 };
