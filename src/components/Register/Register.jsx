@@ -24,7 +24,7 @@ function BasicExample() {
         password: password,
         first_name: firstName,
         last_name: lastName,
-        phone: phoneNumber
+        phone: phoneNumber,
       })
       .then((res) => {
         console.log(res.data);
@@ -101,7 +101,6 @@ function BasicExample() {
           placeholder="Password"
         />
       </Form.Group>
-      {/* <Form.Group className="mb-3" controlId="formBasicCheckbox"></Form.Group> */}
       <Button variant="danger" type="submit">
         Submit
       </Button>
