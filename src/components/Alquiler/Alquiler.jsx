@@ -18,9 +18,13 @@ import axios from "axios";
 import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
+import { useDispatch, useSelector } from "react-redux";
+import { addToFavs, setUser } from "../../state/user";
 
 export const Alquiler = () => {
-  const [user, setUser] = useState({});
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const [tipoDePropiedad, setTipoDePropiedad] = useState("");
 
   /// Propiedades ///
@@ -41,10 +45,10 @@ export const Alquiler = () => {
   ///
 
   /// User ///
-  useEffect(() => {
-    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
-    setUser(userLogueado);
-  }, []);
+  // useEffect(() => {
+  //   const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
+  //   setUser(userLogueado);
+  // }, []);
   ///
 
   /// Filtros por Tipo ///
@@ -97,9 +101,8 @@ export const Alquiler = () => {
       });
   };
 
-  ///     SEARCH
+  /// SEARCH
 
-  const [searchResults, setSearchResults] = useState([]);
   const [query, setQuery] = useState("");
 
   const handleInputChange = (e) => {
@@ -111,22 +114,25 @@ export const Alquiler = () => {
       .get(`/api/property/buscar/${query}`)
       .then((response) => {
         console.log("Respuesta de búsqueda:", response.data);
-      setProperties(response.data);
+        setProperties(response.data);
       })
       .catch((error) => {
         console.log("Error al realizar la búsqueda:", error);
       });
-        console.log("Realizando búsqueda con la query:", query);
+    console.log("Realizando búsqueda con la query:", query);
   };
-
-  const handleKeyPress = (e) => {
-    if (e.key === "Enter") {
-      handleSearch();
-    }
-  };
+  // revisar
+  // const handleKeyPress = (e) => {
+  //   if (e.key === "Enter") {
+  //     handleSearch();
+  //   }
+  // };
 
   ///
 
+  //// ADD TO FAV ///
+
+  /////
   return (
     <>
       <div
@@ -151,154 +157,6 @@ export const Alquiler = () => {
           </Col>
         </Row>
       </div>
-
-      <Container style={{marginTop :"3%"}}>
-        <Form className="d-flex">
-          <Form.Control
-            type="search"
-            placeholder="Busca tu propiedad"
-            className="me-2"
-            aria-label="Search"
-            value={query}
-            onChange={handleInputChange}
-            handleKeyUp={handleKeyPress}
-          />
-          <Button variant="outline-light" onClick={handleSearch}>
-            Buscar
-          </Button>
-        </Form>
-      </Container>
-
-      <Row className="row-filter">
-        <Col sm={6}>
-          <Accordion
-            className="acordion"
-            style={{
-              border: "2px solid #123acb",
-              marginTop: "3%",
-              padding: "10px",
-              color: "#123acb",
-              fontFamily: "Montserrat",
-              fontWeight: "900",
-              width: "30%",
-            }}
-          >
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Filtrar por precio</Accordion.Header>
-              <Accordion.Body>
-                <Button
-                  variant="primary"
-                  href="/alquiler"
-                  onClick={handleFilterPrecioMenorAMayor}
-                >
-                  Precio Menor a Mayor{" "}
-                </Button>
-                <Button
-                  variant="primary"
-                  href="/alquiler"
-                  onClick={handleFilterPrecioMayorAMenor}
-                >
-                  Precio Mayor a Menor{" "}
-                </Button>
-                <Button variant="primary" href="/alquiler">
-                  Borrar Filtro
-                </Button>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </Col>
-        <Col sm={6}>
-          <Accordion
-            className="acordion"
-            style={{
-              border: "2px solid #123acb",
-              marginTop: "3%",
-              padding: "10px",
-              color: "#123acb",
-              fontFamily: "Montserrat",
-              fontWeight: "900",
-              width: "30%",
-            }}
-          >
-            <Accordion.Item eventKey="0">
-              <Accordion.Header>Tipo de propiedad</Accordion.Header>
-              <Accordion.Body>
-                <div class="form-check form-switch">
-                  <input
-                    onChange={handleChange}
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDefault"
-                    value="casa"
-                    checked={tipoDePropiedad == "casa" ? true : false}
-                  ></input>
-                  <label class="form-check-label" for="flexSwitchCheckDefault">
-                    Casa
-                  </label>
-                </div>
-                <div class="form-check form-switch">
-                  <input
-                    onChange={handleChange}
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckChecked"
-                    value="departamento"
-                    checked={tipoDePropiedad == "departamento" ? true : false}
-                  ></input>
-                  <label class="form-check-label" for="flexSwitchCheckChecked">
-                    Departamento
-                  </label>
-                </div>
-                <div class="form-check form-switch">
-                  <input
-                    onChange={handleChange}
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDisabled"
-                    value="duplex"
-                    checked={tipoDePropiedad == "duplex" ? true : false}
-                  ></input>
-                  <label class="form-check-label" for="flexSwitchCheckDisabled">
-                    Duplex
-                  </label>
-                </div>
-                <div class="form-check form-switch">
-                  <input
-                    onChange={handleChange}
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDisabled"
-                    value="ph"
-                    checked={tipoDePropiedad == "ph" ? true : false}
-                  ></input>
-                  <label class="form-check-label" for="flexSwitchCheckDisabled">
-                    PH
-                  </label>
-                </div>
-                <div class="form-check form-switch">
-                  <input
-                    onChange={handleChange}
-                    class="form-check-input"
-                    type="checkbox"
-                    id="flexSwitchCheckDisabled"
-                    value="terreno"
-                    checked={tipoDePropiedad == "terreno" ? true : false}
-                  ></input>
-                  <label class="form-check-label" for="flexSwitchCheckDisabled">
-                    Terreno
-                  </label>
-                </div>
-                <Button variant="primary" onClick={handleFilterTipoDeProps}>
-                  Filtrar
-                </Button>
-                <Button variant="primary" href="/alquiler">
-                  Borrar Filtro
-                </Button>
-              </Accordion.Body>
-            </Accordion.Item>
-          </Accordion>
-        </Col>
-      </Row>
       <div
         style={{
           width: "90%",
@@ -316,6 +174,238 @@ export const Alquiler = () => {
           </Link>
         ) : null}
       </div>
+      <Container style={{ marginTop: "2%" }}>
+        <Row className="row-filter">
+          <Col sm={3}>
+            <Accordion
+              className="acordion"
+              style={{
+                border: "2px solid #123acb",
+                fontFamily: "Montserrat",
+                fontWeight: "900",
+              }}
+            >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Filtrar por precio</Accordion.Header>
+                <Accordion.Body>
+                  <Button
+                    variant="primary"
+                    href="/alquiler"
+                    onClick={handleFilterPrecioMenorAMayor}
+                    style={{
+                      border: "1px solid #123acb",
+                      borderRadius: "0px",
+                      fontFamily: "Montserrat",
+                      fontWeight: "600",
+                      padding: "5px",
+                      backgroundColor: "white",
+                      margin: "2%",
+                      color: "black",
+                    }}
+                  >
+                    Precio Menor a Mayor{" "}
+                  </Button>
+                  <Button
+                    variant="primary"
+                    href="/alquiler"
+                    onClick={handleFilterPrecioMayorAMenor}
+                    style={{
+                      border: "1px solid #123acb",
+                      borderRadius: "0px",
+                      fontFamily: "Montserrat",
+                      fontWeight: "600",
+                      padding: "5px",
+                      backgroundColor: "white",
+                      margin: "2%",
+                      color: "black",
+                    }}
+                  >
+                    Precio Mayor a Menor{" "}
+                  </Button>
+                  <Button
+                    variant="primary"
+                    href="/alquiler"
+                    style={{
+                      border: "1px solid #123acb",
+                      borderRadius: "0px",
+                      fontFamily: "Montserrat",
+                      fontWeight: "600",
+                      padding: "5px",
+                      backgroundColor: "white",
+                      margin: "2%",
+                      color: "black",
+                    }}
+                  >
+                    Borrar Filtro
+                  </Button>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </Col>
+          <Col sm={3}>
+            <Accordion
+              className="acordion"
+              style={{
+                border: "2px solid #123acb",
+                fontFamily: "Montserrat",
+                fontWeight: "900",
+              }}
+            >
+              <Accordion.Item eventKey="0">
+                <Accordion.Header>Tipo de propiedad</Accordion.Header>
+                <Accordion.Body>
+                  <div class="form-check form-switch">
+                    <input
+                      onChange={handleChange}
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckDefault"
+                      value="casa"
+                      checked={tipoDePropiedad == "casa" ? true : false}
+                    ></input>
+                    <label
+                      class="form-check-label"
+                      for="flexSwitchCheckDefault"
+                    >
+                      Casa
+                    </label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input
+                      onChange={handleChange}
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckChecked"
+                      value="departamento"
+                      checked={tipoDePropiedad == "departamento" ? true : false}
+                    ></input>
+                    <label
+                      class="form-check-label"
+                      for="flexSwitchCheckChecked"
+                    >
+                      Departamento
+                    </label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input
+                      onChange={handleChange}
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckDisabled"
+                      value="duplex"
+                      checked={tipoDePropiedad == "duplex" ? true : false}
+                    ></input>
+                    <label
+                      class="form-check-label"
+                      for="flexSwitchCheckDisabled"
+                    >
+                      Duplex
+                    </label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input
+                      onChange={handleChange}
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckDisabled"
+                      value="ph"
+                      checked={tipoDePropiedad == "ph" ? true : false}
+                    ></input>
+                    <label
+                      class="form-check-label"
+                      for="flexSwitchCheckDisabled"
+                    >
+                      PH
+                    </label>
+                  </div>
+                  <div class="form-check form-switch">
+                    <input
+                      onChange={handleChange}
+                      class="form-check-input"
+                      type="checkbox"
+                      id="flexSwitchCheckDisabled"
+                      value="terreno"
+                      checked={tipoDePropiedad == "terreno" ? true : false}
+                    ></input>
+                    <label
+                      class="form-check-label"
+                      for="flexSwitchCheckDisabled"
+                    >
+                      Terreno
+                    </label>
+                  </div>
+                  <Button
+                    variant="primary"
+                    onClick={handleFilterTipoDeProps}
+                    style={{
+                      border: "1px solid #123acb",
+                      borderRadius: "0px",
+                      fontFamily: "Montserrat",
+                      fontWeight: "600",
+                      padding: "5px",
+                      backgroundColor: "white",
+                      margin: "2%",
+                      color: "black",
+                    }}
+                  >
+                    Filtrar
+                  </Button>
+                  <Button
+                    variant="primary"
+                    href="/alquiler"
+                    style={{
+                      border: "1px solid #123acb",
+                      borderRadius: "0px",
+                      fontFamily: "Montserrat",
+                      fontWeight: "600",
+                      padding: "5px",
+                      backgroundColor: "white",
+                      margin: "2%",
+                      color: "black",
+                    }}
+                  >
+                    Borrar Filtro
+                  </Button>
+                </Accordion.Body>
+              </Accordion.Item>
+            </Accordion>
+          </Col>
+          <Col sm={6}>
+            <Form className="d-flex">
+              <Form.Control
+                type="search"
+                placeholder="Busca tu propiedad"
+                className="me-2"
+                aria-label="Search"
+                value={query}
+                onChange={handleInputChange}
+                // handleKeyUp={handleKeyPress}
+                style={{
+                  border: "2px solid #123acb",
+                  borderRadius: "0px",
+                  fontFamily: "Montserrat",
+                  fontWeight: "900",
+                  padding: "15px",
+                }}
+              />
+              <Button
+                onClick={handleSearch}
+                style={{
+                  border: "2px solid #123acb",
+                  borderRadius: "0px",
+                  fontFamily: "Montserrat",
+                  fontWeight: "900",
+                  padding: "15px",
+                  backgroundColor: "white",
+                  color: "black",
+                }}
+              >
+                Buscar
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+      </Container>
       <div className="banner-inicio">
         <img
           src="https://images.pexels.com/photos/7512042/pexels-photo-7512042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
@@ -327,12 +417,13 @@ export const Alquiler = () => {
         ></img>
       </div>
       <hr className="hr-separador" />
+      {/* ///Grilla/// */}
       <section>
         <Container className="cont-grid">
           <Row className="row-grid">
             {properties.map((propiedad) => {
               return (
-                <Col className="col-grid col-md-offset-2" sm={6}>
+                <Col xs={12} md={6} lg={6} style={{ padding: "1.5%" }}>
                   <Card.Body>
                     <Row>
                       <Col className="col-grid" sm={12}>

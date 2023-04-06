@@ -53,3 +53,8 @@
 .botones-info {
   color: #123acb;
 }
+
+.row-grid {
+  padding-left: 0% !important;
+  padding-right: 0% !important;
+}

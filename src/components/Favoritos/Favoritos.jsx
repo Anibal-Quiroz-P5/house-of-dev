@@ -7,15 +7,20 @@ import { Button, Card, Form, Container } from "react-bootstrap";
 import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
+import { useDispatch, useSelector } from "react-redux";
+import { removeFromFavs, setUser } from "../../state/user";
 
 export const Favoritos = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
   const [favourites, setFavourites] = useState([]);
-  const [user, setUser] = useState({});
 
+  // esto se podria sacar
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
     setUser(userLogueado);
   }, []);
+  ///
 
   // traigo todos los fav un usuario
 
@@ -29,17 +34,6 @@ export const Favoritos = () => {
         console.log(err);
       });
   }, [user]);
-
-  // useEffect((id) => {
-  //   axios
-  //     .get(`/api/property/${id}`)
-  //     .then((res) => {
-  //       console.log("property por id", res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   //deleteo por id de usuario y id de propiedad
 
@@ -56,6 +50,21 @@ export const Favoritos = () => {
       })
       .catch((error) => console.log(error));
   };
+  //
+
+  // Intento de delete con redux, deletea ok pero no renderiza automatico//
+
+  // const handleDeleteFav = (id) => {
+  //   axios
+  //     .delete(`/api/favourites/${user.id}/delete/${id}`)
+  //     .then((res) => {
+  //       console.log("propiedad eliminada", res.data);
+  //       dispatch(removeFromFavs(res.data));
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
+
+  ////
 
   return (
     <section>

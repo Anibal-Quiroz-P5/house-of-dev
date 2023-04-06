@@ -4,12 +4,18 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
+import { useDispatch } from "react-redux";
+import { setUser } from "../../state/user";
 
 function Login() {
-  const [user, setUser] = useState({});
+  // Pruenas redux//
+  const dispatch = useDispatch();
+  ///
+  const navigate = useNavigate();
+
+  // const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,16 +26,14 @@ function Login() {
       })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
+        dispatch(setUser(res.data));
+        console.log(res.data);
         navigate("/");
       })
       .catch(() => {
         alert("se rompio");
       });
   };
-  useEffect(() => {
-    const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
-    setUser(userLogueado);
-  }, []);
 
   return (
     <div className="todo">
