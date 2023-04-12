@@ -1,6 +1,7 @@
 import { createAction, createReducer } from "@reduxjs/toolkit";
 
 export const setUser = createAction("SET_USER");
+export const userLogout = createAction("USER_LOGOUT");
 export const addToFavs = createAction("ADD_TO_FAVORITES");
 export const removeFromFavs = createAction("REMOVE_FROM_FAVORITES");
 
@@ -16,6 +17,7 @@ const initialState = {
 
 const reducer = createReducer(initialState, {
   [setUser]: (state, action) => action.payload,
+  [userLogout]: (state, action) => ({}),
   [addToFavs]: (state, action) => {
     return state.favorites.push(action.payload);
   },

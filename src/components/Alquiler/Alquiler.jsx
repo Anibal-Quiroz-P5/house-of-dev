@@ -112,16 +112,20 @@ export const Alquiler = () => {
       });
     console.log("Realizando búsqueda con la query:", query);
   };
-  //añadir a favoritos
-  const handleAddFavorites = (id) => {
-    axios
-      .post(`/api/favourites/${user.id}/add/${id}`)
-      .then((res) => {
-        console.log("agregado correctamente", res.data);
-        dispatch(addToFavs(res.data));
-      })
-      .catch((error) => console.log(error));
-  };
+  //añadir a favoritos // no funciona
+  // const handleAddFavorites = (id) => {
+  //   axios
+  //     .post(
+  //       `/api/favourites/${user.id}/add/${id}`,
+  //       { id, user },
+  //       { withCredentials: true }
+  //     )
+  //     .then((res) => {
+  //       console.log("agregado correctamente", res.data);
+  //       dispatch(addToFavs(res.data));
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
 
   return (
     <>
@@ -164,7 +168,24 @@ export const Alquiler = () => {
           </Link>
         ) : null}
       </div>
-      <Container style={{ marginTop: "2%" }}>
+
+      <div className="baner">
+        <div
+          style={{
+            width: "45%",
+            marginLeft: "55%",
+            height: "100%",
+            paddingTop: "15%",
+            paddingRight: "3%",
+            background: "linear-gradient(to right, transparent, #123AC8",
+            color: "white",
+          }}
+        >
+          <h1 className="h1-grid">Lorem ipsum dolor</h1>
+          <h1 className="h1-grid">amet consectetur adipisicing elit.</h1>
+        </div>
+      </div>
+      <Container style={{ marginTop: "2%", marginBottom: "2%" }}>
         <Row className="row-filter">
           <Col sm={3}>
             <Accordion
@@ -395,84 +416,85 @@ export const Alquiler = () => {
           </Col>
         </Row>
       </Container>
-      <div className="banner-inicio">
-        <img
-          src="https://images.pexels.com/photos/7512042/pexels-photo-7512042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-          className="mx-auto d-block"
-          alt="Responsive image"
-          style={{ marginTop: "4%", marginBottom: "2%" }}
-          height={"450px"}
-          width={"80%"}
-        ></img>
-      </div>
+
       <hr className="hr-separador" />
       {/* ///Grilla/// */}
       <section>
-        <Container className="cont-grid">
-          <Row className="row-grid">
-            {properties.map((propiedad) => {
+        <Container>
+          <Row>
+            {properties.map((propiedades) => {
               return (
-                <Col xs={12} md={6} lg={6} style={{ padding: "1.5%" }}>
-                  <Card.Body>
-                    <Row>
-                      <Col className="col-grid" sm={12}>
-                        <Card.Title>{propiedad.title}</Card.Title>
-                      </Col>
-                      <Col className="col-grid" sm={6}>
-                        <Form.Text className="text-muted">
-                          $ {propiedad.price}
-                        </Form.Text>
-                      </Col>
-                      <Col className="col-grid" sm={6}>
-                        <Form.Text className="text-muted">
-                          <SlLocationPin /> {propiedad.city}
-                        </Form.Text>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="col-grid" sm={4}>
-                        <Form.Text className="text-muted">
-                          <RxRulerSquare /> {propiedad.area} m2
-                        </Form.Text>
-                      </Col>
-
-                      <Col className="col-grid" sm={4}>
-                        <Form.Text className="text-muted">
-                          <BiBed /> {propiedad.bedroom} Dorm.
-                        </Form.Text>
-                      </Col>
-                      <Col className="col-grid" sm={4}>
-                        <Form.Text className="text-muted">
-                          <BiBath className="botones-info" />{" "}
-                          {propiedad.bathroom} Baños
-                        </Form.Text>
-                      </Col>
-                    </Row>
-                    <Row>
-                      <Col className="col-grid" sm={12}>
-                        <Form.Text className="text-muted">
-                          {propiedad.description.length > 250
-                            ? `${propiedad.description.substring(0, 250)}...`
-                            : propiedad.description}
-                        </Form.Text>
-                      </Col>
-                    </Row>
-                  </Card.Body>
-                  <Card.Body className="botones-div">
-                    {/* <Button
-                      className="botones-cta"
-                      type="submit"
-                      onClick={() => handleAddFavorites(properties.id)}
-                    >
-                      <MdFavoriteBorder className="boton-cta" />
-                    </Button> */}
-                    <Button className="botones-cta">
-                      <BiPhoneCall className="boton-cta" />
-                    </Button>
-                    <Link to={`/property/${propiedad.id}`}>
-                      <Button className="buttonVerMas">VER MÁS</Button>
-                    </Link>
-                  </Card.Body>
+                <Col
+                  className="col-principal"
+                  xs={12}
+                  md={6}
+                  lg={6}
+                  style={{ padding: "1.5%" }}
+                >
+                  <Row>
+                    <Col className="col-cinco" xs={5}>
+                      <Card.Img
+                        className="grid-img"
+                        src={propiedades.image[0]}
+                      ></Card.Img>
+                    </Col>
+                    <Col className="col-siete" xs={7}>
+                      <Row>
+                        <Col className="col-internas" sm={6}>
+                          $ {propiedades.price}
+                        </Col>
+                        <Col className="col-internas" sm={6}>
+                          <SlLocationPin className="icons-internos" />{" "}
+                          {propiedades.city}
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className="col-internas" sm={4}>
+                          <RxRulerSquare className="icons-internos" />{" "}
+                          {propiedades.area} m2
+                        </Col>
+                        <Col className="col-internas" sm={4}>
+                          <BiBed className="icons-internos" />{" "}
+                          {propiedades.bedroom}
+                        </Col>
+                        <Col className="col-internas" sm={4}>
+                          <BiBath className="icons-internos" />{" "}
+                          {propiedades.bathroom}
+                        </Col>
+                      </Row>
+                      <Row>
+                        <Col className="col-internas">
+                          <Form.Text>
+                            {propiedades.description.length > 180
+                              ? `${propiedades.description.substring(
+                                  0,
+                                  180
+                                )}...`
+                              : propiedades.description}
+                          </Form.Text>
+                        </Col>
+                      </Row>
+                      <Container className="cont-btn">
+                        <Row>
+                          <Col className="col-internas-botones">
+                            <Button className="btn-cta">
+                              <BiPhoneCall />
+                            </Button>
+                          </Col>
+                          <Col className="col-internas-botones">
+                            <Button className="btn-cta">
+                              <MdFavoriteBorder />
+                            </Button>
+                          </Col>
+                          <Col className="col-internas-botones">
+                            <Link to={`/property/${propiedades.id}`}>
+                              <Button className="btn-mas">VER MÁS</Button>
+                            </Link>
+                          </Col>
+                        </Row>
+                      </Container>
+                    </Col>
+                  </Row>
                 </Col>
               );
             })}
@@ -482,3 +504,101 @@ export const Alquiler = () => {
     </>
   );
 };
+
+{
+  /* <Container className="cont-grid">
+<Row className="row-grid">
+  {properties.map((propiedad) => {
+    return (
+      <Col xs={12} md={6} lg={6} style={{ padding: "1.5%" }}>
+        <Card
+          id={propiedad.id}
+          style={{
+            height: "250px",
+            border: "1px solid #123AC8",
+            borderRadius: "0px",
+            margin: "0 auto",
+            width: "95%",
+          }}
+        >
+          <Row>
+            <Col xs={5}>
+              <Card.Img
+                style={{
+                  height: "250px",
+                  borderRight: "1px solid #123AC8",
+                  marginLeft: "5%",
+                  borderRadius: "0%",
+                }}
+                src={propiedad.image[0]}
+              />
+            </Col>
+            <Col xs={7} style={{ width: "51%", margin: "0 auto" }}>
+              <Row>
+                <Col className="col-grid" sm={6}>
+                  <Form.Text className="text-muted">
+                    $ {propiedad.price}
+                  </Form.Text>
+                </Col>
+                <Col className="col-grid" sm={6}>
+                  <Form.Text className="text-muted">
+                    <SlLocationPin /> {propiedad.city}
+                  </Form.Text>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="col-grid" sm={4}>
+                  <Form.Text className="text-muted">
+                    <RxRulerSquare /> {propiedad.area} m2
+                  </Form.Text>
+                </Col>
+
+                <Col className="col-grid" sm={4}>
+                  <Form.Text className="text-muted">
+                    <BiBed /> {propiedad.bedroom} Dorm.
+                  </Form.Text>
+                </Col>
+                <Col className="col-grid" sm={4}>
+                  <Form.Text className="text-muted">
+                    <BiBath className="botones-info" />{" "}
+                    {propiedad.bathroom} Baños
+                  </Form.Text>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="col-grid" sm={12}>
+                  <Form.Text className="text-muted">
+                    {propiedad.description.length > 220
+                      ? `${propiedad.description.substring(
+                          0,
+                          220
+                        )}...`
+                      : propiedad.description}
+                  </Form.Text>
+                </Col>
+              </Row>
+
+              <Card.Body className="botones-div">
+                {/* <Button
+            className="botones-cta"
+            type="submit"
+            onClick={() => handleAddFavorites(properties.id)}
+          >
+            <MdFavoriteBorder className="boton-cta" />
+          </Button> */
+}
+//                 <Button className="botones-cta">
+//                   <BiPhoneCall className="boton-cta" />
+//                 </Button>
+//                 <Link to={`/property/${propiedad.id}`}>
+//                   <Button className="buttonVerMas">VER MÁS</Button>
+//                 </Link>
+//               </Card.Body>
+//             </Col>
+//           </Row>
+//         </Card>
+//       </Col>
+//     );
+//   })}
+// </Row>
+// </Container> */}

@@ -19,3 +19,11 @@
   border-radius: 12px;
   margin-left: 2px;
 }
+
+.baner {
+  background-image: url(https://images.pexels.com/photos/7512042/pexels-photo-7512042.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  width: 80%;
+  margin: 0 auto;
+  height: 400px;
+  margin-top: 2%;
+}

@@ -67,7 +67,6 @@ export const Venta = () => {
         ></img>
       </div>
       <hr className="hr-separador" />
-      <Grid />
     </>
   );
 };
