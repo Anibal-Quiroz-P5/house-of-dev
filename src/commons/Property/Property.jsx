@@ -2,37 +2,27 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Form, ListGroup, Button } from "react-bootstrap";
 import "./Property.css";
 import axios from "axios";
-import { useParams, useNavigate } from "react-router";
+import { useParams } from "react-router";
 import { Link } from "react-router-dom";
-
 import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
-
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavs, setUser } from "../../state/user";
 
-  ///////////////////////////////////////////////////////
 
 import { Rating } from "react-simple-star-rating";
-import Modal from 'react-bootstrap/Modal';
-
-  ///////////////////////////////////////////////////////
 
 export const Property = () => {
   const { id } = useParams();
   const [properties, setProperties] = useState([]);
-  // const [user, setUser] = useState({});
-  const [favourites, setFavourites] = useState([]);
-
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isScheduling, setIsScheduling] = useState(false);
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -55,7 +45,6 @@ export const Property = () => {
     axios
       .post(`/api/favourites/${user.id}/add/${id}`)
       .then((res) => {
-        console.log("agregado correctamente", res.data);
         dispatch(addToFavs(res.data));
       })
       .catch((error) => console.log(error));
@@ -64,10 +53,7 @@ export const Property = () => {
   const handleAgendar = (id) => {
     const formattedDate = selectedDate.toISOString().slice(0, 10);
     const data = { date: formattedDate, time: selectedTime };
-    console.log("fecha formateada", data);
-
     axios.post(`/api/appointment/${user.id}/add/${id}`, data).then((res) => {
-      console.log(user.id, id);
       console.log("cita agendada", res.data);
     });
   };
@@ -249,7 +235,6 @@ export const Property = () => {
                           selected={selectedDate}
                           onChange={(date) => setSelectedDate(date)}
                           dateFormat={"dd/MM/yyyy"}
-                          // filterDate={(date) => date.getDay() !== 5}
                           showYearDropdown
                           scrollableMonthYearDropdown
                         />{" "}

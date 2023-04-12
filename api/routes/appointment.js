@@ -11,7 +11,6 @@ const MAX_HOUR = 19;
 
 appointmentRouter.get("/appointments", (req, res) => {
   Appointment.findAll({
-    // include: [{ model: User, Property }],
     attributes: ["id", "date", "time"],
   })
     .then((appointment) => {
@@ -117,15 +116,12 @@ appointmentRouter.get("/:userId/appointments", (req, res) => {
 //ruta para cancelar una cita
 appointmentRouter.delete("/:userId/delete/:propertyId", (req, res) => {
   const { userId, propertyId } = req.params;
-  console.log("entre a la ruta");
   User.findOne({ where: { id: userId } })
     .then((user) => {
-      console.log(user);
       Property.findOne({ where: { id: parseInt(propertyId) } })
         .then((property) => {
           Appointment.findOne({
             where: { userId: user.id, propertyId: property.id },
-            // attributes: ["id", "date", "time"],
           })
             .then((appointment) => {
               Appointment.destroy({

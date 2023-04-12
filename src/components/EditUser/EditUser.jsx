@@ -10,8 +10,7 @@ const EditUser = () => {
   const [lastName, setLastName] = useState("");
   const [user, setUser] = useState([]);
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("")
-
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -26,11 +25,12 @@ const EditUser = () => {
         first_name: firstName,
         last_name: lastName,
         phone: phone,
-        password: password
+        password: password,
       })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
         alert("Se realizaron los cambios satisfactoriamente");
+        navigate("/userview");
       })
       .catch(() => {
         alert("Hubo un error al actualizar los datos");
@@ -69,7 +69,6 @@ const EditUser = () => {
           onChange={(e) =>  setPassword(e.target.value)}
         />{" "} */}
         <br />
-        
         <button>Editar</button>
       </form>
     </div>

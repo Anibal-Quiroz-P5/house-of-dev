@@ -1,70 +1,49 @@
-# Getting Started with Create React App
+# House of Dev
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este proyecto fue diseñado para una inmobiliaria, donde un usuario pueda ver las propiedades que hay disponibles, guardarlas en sus favoritos y si desean sacar una cita para poder visitarla.
+Realizado por Guido Bonesi, Anibal Quiroz y Belén Cécere.
 
-## Available Scripts
+## Tecnologías utilizadas
 
-In the project directory, you can run:
+Back:
 
-### `npm start`
+·Node
+·Express
+·Sequelize
+·Psql
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Front:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+·React
+·Redux
+·Bootstrap
+·React-router-dom
 
-### `npm test`
+### Iniciar la aplicación
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Para poder iniciar, despues de clonar el repositorio ejecutar el comando `npm i`, `npm start` y `node api/seed`. Este último para poder inicializar la base de datos.
 
-### `npm run build`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+·Página de inicio
+![Screenshot from 2023-04-06 15-03-52](https://user-images.githubusercontent.com/82118666/230461552-f8e588b2-4db6-4aa4-8ea9-c92e40fab999.png)
+·Vista de la grilla de propiedades
+![Screenshot from 2023-04-06 15-04-08](https://user-images.githubusercontent.com/82118666/230461580-40b7b80a-2047-4108-b75b-628fcd9bf97e.png)
+·Navbar para un usuario cliente
+![Screenshot from 2023-04-06 15-05-13](https://user-images.githubusercontent.com/82118666/230461597-fa6cac8f-d365-4ae3-b8cd-4d1e468c3815.png)
+·Vista individual de una propiedad
+![Screenshot from 2023-04-06 15-05-43](https://user-images.githubusercontent.com/82118666/230461633-0522d4da-1123-4ade-a2d5-fe5493f85370.png)
+·Vista para agendar cita
+![Screenshot from 2023-04-06 15-06-15](https://user-images.githubusercontent.com/82118666/230461659-b0127b80-ab78-4860-9974-f9cb91e2f414.png)
+·Vista individual desde un usuario administrador
+![Screenshot from 2023-04-06 15-06-48](https://user-images.githubusercontent.com/82118666/230461665-706f2dfb-3778-4686-810b-0ce1604c76a0.png)
+·Panel de usuarios desde usuario administrador
+![Screenshot from 2023-04-06 15-07-00](https://user-images.githubusercontent.com/82118666/230461676-d8991eca-d31c-4836-a694-7f08a0ec9c0b.png)
+·Filtros aplicables
+![Screenshot from 2023-04-06 15-07-17](https://user-images.githubusercontent.com/82118666/230461681-ce53c0a5-8ac9-4ef6-8c87-1a483499ebb5.png)
+·Vista de favoritos de un usuario
+![Screenshot from 2023-04-06 15-05-49](https://user-images.githubusercontent.com/82118666/230462953-2c1e794e-88fb-4e01-b9fe-74532c3b3505.png)
+·Vista del perfil de usuario
+![Screenshot from 2023-04-06 15-05-24](https://user-images.githubusercontent.com/82118666/230462983-1ea837f3-5e41-4ea4-ba7b-dbe8eb1965fd.png)
+·Navbar sin ningún usuario ingresado
+![Screenshot from 2023-04-06 15-04-18](https://user-images.githubusercontent.com/82118666/230463004-9bbf13aa-aba4-4df5-8994-e72690ef96d9.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

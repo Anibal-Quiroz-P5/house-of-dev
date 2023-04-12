@@ -1,6 +1,6 @@
 import Form from "react-bootstrap/Form";
 import { Link } from "react-router-dom";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Login.css";
@@ -8,12 +8,8 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../state/user";
 
 function Login() {
-  // Pruenas redux//
   const dispatch = useDispatch();
-  ///
   const navigate = useNavigate();
-
-  // const [user, setUser] = useState({});
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

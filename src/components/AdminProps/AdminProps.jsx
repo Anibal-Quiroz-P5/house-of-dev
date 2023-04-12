@@ -5,13 +5,13 @@ import Col from "react-bootstrap/Col";
 import "./AdminProps.css";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import { Button, Card, Form, ListGroup } from "react-bootstrap";
+import { Button, Card, Form } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { BiBed, BiBath } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { Navigate, useNavigate, useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 export const AdminProps = () => {
   const [properties, setProperties] = useState([]);
@@ -120,12 +120,6 @@ export const AdminProps = () => {
                   </Row>
                 </Card.Body>
                 <Card.Body className="botones-div">
-                  {/* <Button className="botones-cta">
-                    <MdFavoriteBorder className="boton-cta" />
-                  </Button>
-                  <Button className="botones-cta">
-                    <BiPhoneCall className="boton-cta" />
-                  </Button> */}
                   <Link to={`/edit/${propiedad.id}`}>
                     <Button className="buttonEditar">
                       <FiEdit className="boton-cta" /> EDITAR

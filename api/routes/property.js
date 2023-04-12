@@ -3,19 +3,9 @@ const { Property } = require("../models");
 const { Op } = require("sequelize");
 const propertyRouter = express.Router();
 
-//seedeo fake data
-// propertyRouter.post("/", (req, res) => {
-//   Property.bulkCreate(req.body)
-//     .then((property) => {
-//       res.status(201).send(property);
-//     })
-//     .catch((err) => console.log(err));
-// });
 //crear una propiedad
 propertyRouter.post("/add", (req, res) => {
-  console.log("entre a la ruta de agregar");
   Property.create(req.body).then((property) => {
-    console.log("SOY PROPERTY", property);
     res.status(201).send(property);
   });
 });
@@ -29,7 +19,6 @@ propertyRouter.get("/", (req, res) => {
 
 //traer una sola propiedad
 propertyRouter.get("/:id", (req, res) => {
-  console.log("TRAJE UNA SOLA PROPIEDAD");
   const id = req.params.id;
   Property.findOne({ where: { id } })
     .then((property) => {
@@ -73,16 +62,10 @@ propertyRouter.patch("/update/:id", (req, res) => {
         res
           .status(200)
           .json({ message: "Propiedad actualizada correctamente" });
-        // .catch((err) => {
-        //   console.log(err);
-        // return res
-        //   .status(500)
-        //   .json({ message: "error al actualizar los datos" });
       })
       .catch((err) => console.log(err));
   });
 });
-// });
 
 //ruta para eliminar una propiedad
 propertyRouter.delete("/delete/:id", (req, res) => {
@@ -103,7 +86,6 @@ propertyRouter.get("/condition/:condition", (req, res) => {
 });
 // buscar por ubicacion
 //ciudad
-// const productName = req.params.productName.toLowerCase();
 
 propertyRouter.get("/ubication/:city", (req, res) => {
   Property.findAll({
@@ -213,11 +195,6 @@ propertyRouter.get("/buscar/:palabra", (req, res) => {
             [Op.iLike]: `%${req.params.palabra}%`,
           },
         },
-        /* {
-          price: {
-            [Op.iLike]: `%${req.params.palabra}%`
-          }
-        }, */
         {
           type: {
             [Op.iLike]: `%${req.params.palabra}%`,
@@ -234,8 +211,6 @@ propertyRouter.get("/buscar/:palabra", (req, res) => {
       res.status(500).send("Hubo un error en el servidor");
     });
 });
-
-///////////////////////////////////////////////////////////
 
 
 ///// ruta para editar solamente el ranking  ////
@@ -262,9 +237,6 @@ propertyRouter.patch('/:id', (req, res) => {
     });
 });
 
-///////////////////////////////////////////////////////////
-
-
 ///// ruta para editar solamente los reviews  ////
 
 propertyRouter.patch('/review/:id', (req, res) => {
@@ -289,7 +261,5 @@ propertyRouter.patch('/review/:id', (req, res) => {
       res.status(500).json({ error: 'Server error' });
     });
 });
-
-///////////////////////////////////////////////////////////
 
 module.exports = propertyRouter;
