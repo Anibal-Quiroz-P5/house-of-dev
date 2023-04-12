@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Card, Container, Form, ListGroup, Button } from "react-bootstrap";
 import "./Property.css";
 import axios from "axios";
+import moment from "moment";
 import { useParams } from "react-router";
 import { Link } from "react-router-dom";
 import ReactDatePicker from "react-datepicker";
@@ -48,11 +49,36 @@ export const Property = () => {
   };
 
   const handleAgendar = (id) => {
-    const formattedDate = selectedDate.toISOString().slice(0, 10);
+    //const formattedDate = selectedDate.toISOString().slice(0, 10);
+    const selectedDateMoment = moment(selectedDate);
+    const hoy = moment();
+    const formattedDate = selectedDateMoment.format("YYYY-MM-DD");
+    const hora = selectedTime.split(":")[0];
+    const dia = selectedDate.getDay();
     const data = { date: formattedDate, time: selectedTime };
-    axios.post(`/api/appointment/${user.id}/add/${id}`, data).then((res) => {
-      console.log("cita agendada", res.data);
-    });
+    //validacion de horario
+    if (hora < 7 || hora >= 19) {
+      alert("El horario de citas es de 07:00 am a 19:00 pm");
+      return;
+    }
+    //validar dias de semana
+    if (dia === 0 || dia === 6) {
+      alert("Solo se agendan citas de lunes a viernes :)");
+      return;
+    }
+    if (selectedDateMoment.isBefore(hoy, "day")) {
+      alert("no se puede agendar una cita en el pasado");
+      return;
+    }
+    axios
+      .post(`/api/appointment/${user.id}/add/${id}`, data)
+      .then((res) => {
+        console.log("cita agendada", res.data);
+        alert(`cita agendada ${dia} ${hora}`);
+      })
+      .catch(() => {
+        alert("ya tenes una cita agendada para esta propiedad");
+      });
   };
   return (
     <>
