@@ -4,7 +4,16 @@ const User = require("../models/User");
 
 // Promover usuarios administradores
 adminRouter.put("/:id", (req, res) => {
-  User.update({ isAdmin: req.body.isAdmin }, { where: { id: req.params.id } })
+  User.update({ is_admin: true }, { where: { id: req.params.id } })
+    .then(() => res.send("El usuario se actualizo correctmente!"))
+    .catch(() =>
+      res.status(500).send("Hubo un error al actualizar el usuario")
+    );
+});
+
+// Revocar usuarios administradores
+adminRouter.put("/revoke/:id", (req, res) => {
+  User.update({ is_admin: false }, { where: { id: req.params.id } })
     .then(() => res.send("El usuario se actualizo correctmente!"))
     .catch(() =>
       res.status(500).send("Hubo un error al actualizar el usuario")

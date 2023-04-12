@@ -46,13 +46,11 @@ function App() {
         <Route path="/edit/:id" element={<EditProperty />} />
         <Route path="/favoritos" element={<Favoritos />} />
         {user.is_admin ? (
-          <Route path="/propiedades" element={<AdminProps />} />
+          <>
+            <Route path="/propiedades" element={<AdminProps />} />
+            <Route path="/users" element={<AdminAllUsers />} />
+          </>
         ) : null}
-        {user.is_admin ? (
-          <Route path="/users" element={<AdminAllUsers />} />
-        ) : null}
-        <Route path="/propiedades" element={<AdminProps />} />
-        <Route path="/users" element={<AdminAllUsers />} />
         <Route path="/grid" element={<Grid />} />
       </Routes>
     </div>

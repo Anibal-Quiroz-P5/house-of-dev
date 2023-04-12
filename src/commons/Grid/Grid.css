@@ -1,28 +1,11 @@
 /* css */
 
-.container-grid {
-  background-color: white;
-  color: #123acb;
-  width: 80%;
-  margin: 0 auto;
-  height: 400px;
-}
-
-.columna-grid {
+/* .columna-grid {
   border: 1px solid #123acb;
 }
 
 .col-grid {
   border: 1px solid #123acb;
-}
-.cont-grid {
-  display: flex;
-  justify-content: center;
-}
-
-.propiedadImage {
-  height: 300px;
-  width: 100%;
 }
 
 .botones-div {
@@ -54,7 +37,55 @@
   color: #123acb;
 }
 
-.row-grid {
+/* .row > * {
   padding-left: 0% !important;
   padding-right: 0% !important;
+} */
+
+.col-siete {
+  border: 1px solid #123acb;
+}
+.col-cinco {
+  border: 1px solid #123acb;
+  padding: 0%;
+  height: 250px;
+}
+
+.grid-img {
+  height: 250px;
+}
+
+.col-internas {
+  border: 1px solid #123acb;
+}
+
+.icons-internos {
+  color: #123acb;
+}
+
+.cont-btn {
+  display: flex;
+  justify-content: end;
+  margin-top: 4%;
+}
+
+.col-internas-botones {
+  padding: 2%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+.btn-cta {
+  background-color: white;
+  border-color: orange;
+  color: #123acb;
+  border-radius: 50px;
+}
+
+.btn-mas {
+  background-color: white;
+  color: #123acb;
+  border-radius: 50px;
+  font-family: "Montserrat";
+  font-weight: 800;
 }
