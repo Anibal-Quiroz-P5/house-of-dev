@@ -60,7 +60,7 @@ Property.init(
     },
     ranking: {
       type: S.ARRAY(S.INTEGER),
-      // allowNull: false,
+       allowNull: false,
     },
     type: {
       type: S.STRING,
@@ -68,7 +68,7 @@ Property.init(
     },
     review: {
       type: S.ARRAY(S.STRING),
-      // allowNull: false,
+       allowNull: false,
     },
   },
   { sequelize: db, modelName: "property" }

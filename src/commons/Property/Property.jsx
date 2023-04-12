@@ -13,6 +13,12 @@ import "react-time-picker/dist/TimePicker.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavs, setUser } from "../../state/user";
 
+  ///////////////////////////////////////////////////////
+
+import { Rating } from "react-simple-star-rating";
+import Modal from 'react-bootstrap/Modal';
+
+  ///////////////////////////////////////////////////////
 
 export const Property = () => {
   const { id } = useParams();
@@ -65,6 +71,86 @@ export const Property = () => {
       console.log("cita agendada", res.data);
     });
   };
+
+
+  ///////////////////////////////////////////////////////
+
+ 
+  const lastRanking = properties.ranking
+  const lastReview = properties.review
+
+  const [rating, setRating] = useState(0); // initial rating value
+  const [average, setAverage] = useState(0)
+  const[review, setReview] = useState("")
+
+
+  const newRating = []
+
+  const handleRating = (rate) => {
+    setRating(rate);
+
+    console.log("RANKING  ORIGINAL ES" , lastRanking);
+     
+    lastRanking.push(rate)
+    let suma = 0
+    console.log("NUEVO RANKING PUSHEADO ES :", lastRanking);
+    for (let i = 0 ; i<lastRanking.length ; i++) {
+      suma += lastRanking[i]
+    }
+
+    const average = (suma / lastRanking.length).toFixed(2)
+
+   setAverage(average)
+
+  axios.patch(`/api/property/${id}`, { ranking: lastRanking })
+      .then(response => {
+        console.log("RESPUESTAA DEL EDITORR ",  response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+
+
+  };
+
+   //////////////////////////////////////////////////////
+
+/*   const handleReview = (review) => {
+    console.log("VALOR DE REVIEWWWW", review);
+  } */
+
+
+  const titulo = 2023;
+
+
+  const handleSubmit = (event) => {
+    /* setReview(event) */
+    console.log("REVIEW  ORIGINAL ES" , lastReview); 
+    console.log("REVIEW  EVENT ES " , review); 
+
+     lastReview.push(review) 
+
+     console.log("REVIEW  COMPLETA ES  " , lastReview); 
+
+    event.preventDefault();
+    axios
+      // .patch(`/api/property/review/${id}`, { review: [/* ...review, */ lastReview] })
+      .patch(`/api/property/review/${id}`, { review: lastReview })
+      .then((response) => {
+        // Aquí puedes hacer algo con la respuesta del servidor si lo deseas
+      })
+      .catch((error) => {
+        // Manejo de errores
+        console.error(error);
+      });
+  };
+
+  const handleChange = (event) => {
+    setReview(event.target.value);
+  };
+
+  //////////////////////////////////////////////////////
+
   return (
     <>
       <Container className="prop-container">
@@ -94,6 +180,31 @@ export const Property = () => {
           <Card.Body>
             {user.first_name ? (
               <>
+                {/* ///////////////////////////////////////////////////////////////////////////////// */}
+                {/* ///  AGREGADO POR MI  /// */}
+                <Container style={{ marginTop: ".1%" }}>
+                  <Rating
+                    onClick={handleRating}
+                    ratingValue={rating} 
+                    size={20}
+                    label
+                    transition
+                    fillColor="orange"
+                    emptyColor="gray"
+                    className="foo" // Will remove the inline style if applied
+                  />
+                  {/* Use rating value */}
+
+                  {/* {console.log("RATINGGG", rating)} */}
+                  {rating}
+                 {/* {average} */}
+                </Container>
+                
+                {/* <h6> promedio actual: {titulo} </h6> */}
+
+                <h6>Valoración  = {average}</h6>
+                {/* ///////////////////////////////////////////////////////////////////////////////// */}
+
                 <Button
                   className="buttonStyle"
                   type="submit"
@@ -101,6 +212,26 @@ export const Property = () => {
                 >
                   Favorito
                 </Button>
+
+              {/* ///////////////////////////////////////////////////////////////////////////////// */}
+              {/* ///  AGREGADO POR MI  /// */}
+
+                <Link to={`/properties/change/${id}`}>
+                  <Button className="buttonStyle">Agendar visita</Button>
+                </Link>
+              {/* ///////////////////////////////////////////////////////////////////////////////// */}             
+                  <Container>
+                  <form onSubmit={handleSubmit}>
+      <label>
+        Escriba su reseña:
+        <textarea value={review} onChange={handleChange} />
+      </label>
+      <button type="submit">Enviar reseña</button>
+    </form>
+                  </Container>
+
+              {/* ///////////////////////////////////////////////////////////////////////////////// */}
+
                 <Button
                   className="buttonStyle"
                   onClick={() => {
@@ -113,7 +244,7 @@ export const Property = () => {
                   <>
                     <div className="contenedor">
                       SELECCIONA LA FECHA DE TU CITA
-                      <div className="center">
+                      <div className="center" >
                         <ReactDatePicker
                           selected={selectedDate}
                           onChange={(date) => setSelectedDate(date)}
@@ -125,7 +256,7 @@ export const Property = () => {
                         <br />
                         <br />
                         <div className="container">
-                          <TimePicker
+                          <TimePicker 
                             value={selectedTime}
                             onChange={(time) => setSelectedTime(time)}
                             disableClock={true}
