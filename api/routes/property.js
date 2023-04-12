@@ -212,4 +212,54 @@ propertyRouter.get("/buscar/:palabra", (req, res) => {
     });
 });
 
+
+///// ruta para editar solamente el ranking  ////
+
+propertyRouter.patch('/:id', (req, res) => {
+  console.log("ENTRÉ A LA RUTA DEL RANKING DEL BACK Y EL REQ.BODY ES:", req.body);
+  const { id } = req.params;
+  const { ranking } = req.body;
+  
+  Property.findByPk(id)
+    .then(property => {
+      if (!property) {
+        return res.status(404).json({ error: 'Property not found' });
+      }
+      property.ranking = ranking;
+      return property.save();
+    })
+    .then(property => {
+      res.json(property);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    });
+});
+
+///// ruta para editar solamente los reviews  ////
+
+propertyRouter.patch('/review/:id', (req, res) => {
+  const { id } = req.params;
+  const { review } = req.body;
+  
+  console.log("ENTRÉ A LA RUTA DEL REVIEW DEL BACK Y EL REQ.BODY ES:", req.body);
+
+  Property.findByPk(id)
+    .then(property => {
+      if (!property) {
+        return res.status(404).json({ error: 'Property not found' });
+      }
+      property.review = review;
+      return property.save();
+    })
+    .then(property => {
+      res.json(property);
+    })
+    .catch(error => {
+      console.error(error);
+      res.status(500).json({ error: 'Server error' });
+    });
+});
+
 module.exports = propertyRouter;
