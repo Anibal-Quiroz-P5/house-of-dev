@@ -1,8 +1,12 @@
 const express = require("express");
 const appointmentRouter = express.Router();
+const moment = require("moment");
 const { User, Appointment, Property } = require("../models");
 const transporter = require("../config/mailer");
 const moment = require("moment");
+
+const MIN_HOUR = 7;
+const MAX_HOUR = 19;
 
 const MIN_HOUR = 7;
 const MAX_HOUR = 19;
@@ -39,7 +43,9 @@ appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
   if (moment(date).day() === 0 || moment(date).day() === 6) {
     return res
       .status(400)
-      .send("Solo se pueden agendar citas de lunes a viernes");
+
+      .send(`Solo se pueden agendar citas de lunes a viernes`);
+
   }
   const hour = moment(time, "HH:mm").hour();
   //ver que sea solo en los horarios permitidos
@@ -63,6 +69,7 @@ appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
                   date: date,
                   time: time,
                 })
+
                   .then((appointment) => {
                     res.status(201).send("Cita agendada");
 
@@ -78,6 +85,7 @@ appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
                   <h2>En caso de no poder asistir por favor comuniquese con nosotros para cancelar o reprogramar la cita a través de nuestro WhatsApp o telefónicamente. </h2>
                   `
               });
+
 
                   })
                   .catch((err) => res.send("ya tenes una cita", err));
