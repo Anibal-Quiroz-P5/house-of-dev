@@ -12,4 +12,5 @@ Property.belongsToMany(User, { through: Favourites });
 User.belongsToMany(Property, { through: Appointment });
 Property.belongsToMany(User, { through: Appointment });
 
+
 module.exports = { User, Property, Category, Favourites, Appointment };
