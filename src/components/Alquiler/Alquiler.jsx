@@ -114,7 +114,7 @@ export const Alquiler = () => {
     console.log("Realizando búsqueda con la query:", query);
   };
 
-  //añadir a favoritos // no funciona
+  //añadir a favoritos
   const handleAddFavorites = (id) => {
     axios
       .post(
@@ -188,8 +188,8 @@ export const Alquiler = () => {
             color: "white",
           }}
         >
-          <h1 className="h1-grid">Lorem ipsum dolor</h1>
-          <h1 className="h1-grid">amet consectetur adipisicing elit.</h1>
+          <h1 className="h1-grid">House of Dev</h1>
+          <h1 className="h1-grid">Tu nueva vivienda esta aqui.</h1>
         </div>
       </div>
       <Container style={{ marginTop: "2%", marginBottom: "2%" }}>
@@ -484,11 +484,11 @@ export const Alquiler = () => {
                       </Row>
                       <Container className="cont-btn">
                         <Row>
-                          <Col className="col-internas-botones">
+                          {/* <Col className="col-internas-botones">
                             <Button className="btn-cta">
                               <BiPhoneCall />
                             </Button>
-                          </Col>
+                          </Col> */}
                           <Col className="col-internas-botones">
                             <Button
                               className="btn-cta"
@@ -517,101 +517,3 @@ export const Alquiler = () => {
     </>
   );
 };
-
-{
-  /* <Container className="cont-grid">
-<Row className="row-grid">
-  {properties.map((propiedad) => {
-    return (
-      <Col xs={12} md={6} lg={6} style={{ padding: "1.5%" }}>
-        <Card
-          id={propiedad.id}
-          style={{
-            height: "250px",
-            border: "1px solid #123AC8",
-            borderRadius: "0px",
-            margin: "0 auto",
-            width: "95%",
-          }}
-        >
-          <Row>
-            <Col xs={5}>
-              <Card.Img
-                style={{
-                  height: "250px",
-                  borderRight: "1px solid #123AC8",
-                  marginLeft: "5%",
-                  borderRadius: "0%",
-                }}
-                src={propiedad.image[0]}
-              />
-            </Col>
-            <Col xs={7} style={{ width: "51%", margin: "0 auto" }}>
-              <Row>
-                <Col className="col-grid" sm={6}>
-                  <Form.Text className="text-muted">
-                    $ {propiedad.price}
-                  </Form.Text>
-                </Col>
-                <Col className="col-grid" sm={6}>
-                  <Form.Text className="text-muted">
-                    <SlLocationPin /> {propiedad.city}
-                  </Form.Text>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="col-grid" sm={4}>
-                  <Form.Text className="text-muted">
-                    <RxRulerSquare /> {propiedad.area} m2
-                  </Form.Text>
-                </Col>
-
-                <Col className="col-grid" sm={4}>
-                  <Form.Text className="text-muted">
-                    <BiBed /> {propiedad.bedroom} Dorm.
-                  </Form.Text>
-                </Col>
-                <Col className="col-grid" sm={4}>
-                  <Form.Text className="text-muted">
-                    <BiBath className="botones-info" />{" "}
-                    {propiedad.bathroom} Baños
-                  </Form.Text>
-                </Col>
-              </Row>
-              <Row>
-                <Col className="col-grid" sm={12}>
-                  <Form.Text className="text-muted">
-                    {propiedad.description.length > 220
-                      ? `${propiedad.description.substring(
-                          0,
-                          220
-                        )}...`
-                      : propiedad.description}
-                  </Form.Text>
-                </Col>
-              </Row>
-
-              <Card.Body className="botones-div">
-                {/* <Button
-            className="botones-cta"
-            type="submit"
-            onClick={() => handleAddFavorites(properties.id)}
-          >
-            <MdFavoriteBorder className="boton-cta" />
-          </Button> */
-}
-//                 <Button className="botones-cta">
-//                   <BiPhoneCall className="boton-cta" />
-//                 </Button>
-//                 <Link to={`/property/${propiedad.id}`}>
-//                   <Button className="buttonVerMas">VER MÁS</Button>
-//                 </Link>
-//               </Card.Body>
-//             </Col>
-//           </Row>
-//         </Card>
-//       </Col>
-//     );
-//   })}
-// </Row>
-// </Container> */}

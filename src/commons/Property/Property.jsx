@@ -12,9 +12,9 @@ import "react-time-picker/dist/TimePicker.css";
 import "react-clock/dist/Clock.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavs, setUser } from "../../state/user";
-
 import { Rating } from "react-simple-star-rating";
 import { Carousel } from "react-bootstrap";
+import Swal from "sweetalert2";
 
 export const Property = () => {
   const { id } = useParams();
@@ -64,26 +64,46 @@ export const Property = () => {
     const data = { date: formattedDate, time: selectedTime };
     //validacion de horario
     if (hora < 7 || hora >= 19) {
-      alert("El horario de citas es de 07:00 am a 19:00 pm");
+      Swal.fire({
+        title: "El horario de citas es de 07:00 am a 19:00 pm",
+        icon: "error",
+        timer: "3000",
+      });
       return;
     }
     //validar dias de semana
     if (dia === 0 || dia === 6) {
-      alert("Solo se agendan citas de lunes a viernes :)");
+      Swal.fire({
+        title: "Solo se pueden agendar citas de lunes a viernes",
+        icon: "error",
+        timer: "3000",
+      });
       return;
     }
     if (selectedDateMoment.isBefore(hoy, "day")) {
-      alert("no se puede agendar una cita en el pasado");
+      Swal.fire({
+        title: "No se puede agendar una cita en el pasado",
+        icon: "error",
+        timer: "3000",
+      });
       return;
     }
     axios
       .post(`/api/appointment/${user.id}/add/${id}`, data)
       .then((res) => {
         console.log("cita agendada", res.data);
-        alert(`cita agendada ${dia} ${hora}`);
+        Swal.fire({
+          title: "Cita agendada",
+          icon: "success",
+          timer: "2000",
+        });
       })
       .catch(() => {
-        alert("ya tenes una cita agendada para esta propiedad");
+        Swal.fire({
+          title: "Ya tenes una cita agendada para esta propiedad",
+          icon: "error",
+          timer: "3000",
+        });
       });
   };
 

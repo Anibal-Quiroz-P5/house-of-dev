@@ -27,7 +27,7 @@ function Login() {
         navigate("/");
       })
       .catch(() => {
-        alert("se rompio");
+        alert("Email o contraseña incorrecta. Intente nuevamente");
       });
   };
 
