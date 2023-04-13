@@ -28,7 +28,7 @@ favouritesRouter.post("/:userId/add/:propertyId", (req, res) => {
     .catch((err) => res.status(404).send("Usuario no encontrado"));
 });
 
-//buscar los favoritos de un usuario
+// buscar los favoritos de un usuario
 favouritesRouter.get("/:userId/favourites", (req, res) => {
   const { userId } = req.params;
   User.findOne({

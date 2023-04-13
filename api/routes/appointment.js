@@ -3,16 +3,20 @@ const appointmentRouter = express.Router();
 const moment = require("moment");
 const { User, Appointment, Property } = require("../models");
 const transporter = require("../config/mailer");
-
 const MIN_HOUR = 7;
 const MAX_HOUR = 19;
-
-
 // obtener todas las citas
 
 appointmentRouter.get("/appointments", (req, res) => {
   Appointment.findAll({
-    attributes: ["id", "date", "time"],
+    attributes: ["id", "date", "time", "userId", "propertyId"],
+    include: [
+      {
+        model: User,
+        attributes: ["first_name", "last_name", "phone", "email"],
+      },
+      { model: Property, attributes: ["address", "image"] },
+    ],
   })
     .then((appointment) => {
       res.status(200).send(appointment);
@@ -20,7 +24,7 @@ appointmentRouter.get("/appointments", (req, res) => {
     .catch((err) => res.status(500).send(err));
 });
 
-// que un usuario agende una cita 
+// que un usuario agende una cita
 appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
   const { userId, propertyId } = req.params;
   const { date, time } = req.body;
@@ -42,7 +46,6 @@ appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
       .status(400)
 
       .send(`Solo se pueden agendar citas de lunes a viernes`);
-
   }
   const hour = moment(time, "HH:mm").hour();
   //ver que sea solo en los horarios permitidos
@@ -70,20 +73,18 @@ appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
                   .then((appointment) => {
                     res.status(201).send("Cita agendada");
 
-              return transporter.sendMail({
-                from: "<CustomShirt@empresa.com>",
-                to: user.email,    // mail de destino del usuario
-                subject: "Confirmación de cita con House-of-Dev",
-                text: "Confirmamos tu cita para :",
-                html: `
+                    return transporter.sendMail({
+                      from: "<CustomShirt@empresa.com>",
+                      to: user.email, // mail de destino del usuario
+                      subject: "Confirmación de cita con House-of-Dev",
+                      text: "Confirmamos tu cita para :",
+                      html: `
                   <h1>Hola ${user.first_name} ${user.last_name}!!</h1> 
                   <h2> Te recordamos que la cita para visitar la propiedad de:  ${property.address} queda programada para el dia: ${appointment.date}</h2>
                   <h2>a las ${appointment.time} </h2>
                   <h2>En caso de no poder asistir por favor comuniquese con nosotros para cancelar o reprogramar la cita a través de nuestro WhatsApp o telefónicamente. </h2>
-                  `
-              });
-
-
+                  `,
+                    });
                   })
                   .catch((err) => res.send("ya tenes una cita", err));
               })
@@ -95,11 +96,6 @@ appointmentRouter.post("/:userId/add/:propertyId", (req, res) => {
     .catch((err) => res.send(err));
 });
 
-
-
-
-
-
 //buscar las citas de un usuario
 appointmentRouter.get("/:userId/appointments", (req, res) => {
   const { userId } = req.params;
@@ -108,6 +104,7 @@ appointmentRouter.get("/:userId/appointments", (req, res) => {
     include: [
       {
         model: Property,
+        Appointment,
         through: { model: Appointment, attributes: ["id", "date", "time"] },
       },
     ],
@@ -168,6 +165,5 @@ appointmentRouter.patch("/:userId/:appointmentId", (req, res) => {
     })
     .catch((err) => res.status(404).send("Usuario no encontrado"));
 });
-
 
 module.exports = appointmentRouter;

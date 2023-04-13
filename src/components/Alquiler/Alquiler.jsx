@@ -15,7 +15,7 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
+import { BiBed, BiBath, BiPhoneCall, BiDollar } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
@@ -441,7 +441,8 @@ export const Alquiler = () => {
                     <Col className="col-siete" xs={7}>
                       <Row>
                         <Col className="col-internas" sm={6}>
-                          $ {propiedades.price}
+                          <BiDollar className="icons-internos" />{" "}
+                          {propiedades.price}
                         </Col>
                         <Col className="col-internas" sm={6}>
                           <SlLocationPin className="icons-internos" />{" "}

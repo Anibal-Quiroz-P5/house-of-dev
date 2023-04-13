@@ -2,11 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Row, Col, ListGroup, Container, Button, Table } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import Swal from "sweetalert2";
 
 export function AdminAllUsers() {
   const [users, setUsers] = useState([]);
   const user = useSelector((state) => state.user);
+  const navigate = useNavigate();
+  const [favs, setFavs] = useState([]);
+  const [miVariable, setMiVariable] = useState(1);
 
   const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
 
@@ -68,6 +72,18 @@ export function AdminAllUsers() {
         }
       });
     }
+  };
+
+  const handleFavs = (id) => {
+    axios.get(`/api/favourites/${id}/favourites`).then((res) => {
+      console.log("soy los favoritos de este usuario", res.data.properties);
+      setFavs(res.data.properties);
+      if (miVariable === 1) {
+        setMiVariable(0);
+      } else {
+        setMiVariable(1);
+      }
+    });
   };
 
   return (
@@ -150,6 +166,13 @@ export function AdminAllUsers() {
                       Promover
                     </Button>
                   )}
+
+                  <Button
+                    className="boton-edit"
+                    onClick={() => handleFavs(user.id)}
+                  >
+                    Ver favoritos
+                  </Button>
                 </td>
               </tr>
             ))}
