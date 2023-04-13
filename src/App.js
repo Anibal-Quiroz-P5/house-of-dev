@@ -20,6 +20,8 @@ import EditUser from "./components/EditUser/EditUser";
 import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "./state/user";
 import { Grid } from "./commons/Grid/Grid";
+import { Appointments } from "./components/Appointments/Appointments";
+import { MyAppointments } from "./components/Appointments/MyAppointments";
 
 function App() {
   const dispatch = useDispatch();
@@ -41,10 +43,12 @@ function App() {
         <Route path="/userview" element={<UserView />} />
         <Route path="/alquiler" element={<Alquiler />} />
         <Route path="/edituser" element={<EditUser />} />
+        <Route path="/visitas-agendadas" element={<MyAppointments />} />
         <Route path="/venta" element={<Venta />} />
         <Route path="/agregar" element={<AddProperty />} />
         <Route path="/edit/:id" element={<EditProperty />} />
         <Route path="/favoritos" element={<Favoritos />} />
+        <Route path="/citas" element={<Appointments />} />
         {user.is_admin ? (
           <>
             <Route path="/propiedades" element={<AdminProps />} />
