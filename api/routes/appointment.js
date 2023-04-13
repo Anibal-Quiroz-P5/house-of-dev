@@ -3,10 +3,8 @@ const appointmentRouter = express.Router();
 const moment = require("moment");
 const { User, Appointment, Property } = require("../models");
 const transporter = require("../config/mailer");
-
 const MIN_HOUR = 7;
 const MAX_HOUR = 19;
-
 // obtener todas las citas
 
 appointmentRouter.get("/appointments", (req, res) => {

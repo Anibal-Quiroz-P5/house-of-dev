@@ -9,11 +9,12 @@ import ReactDatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import TimePicker from "react-time-picker";
 import "react-time-picker/dist/TimePicker.css";
+import "react-clock/dist/Clock.css";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavs, setUser } from "../../state/user";
 
-
 import { Rating } from "react-simple-star-rating";
+import { Carousel } from "react-bootstrap";
 
 export const Property = () => {
   const { id } = useParams();
@@ -24,6 +25,8 @@ export const Property = () => {
 
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+
+  const [value, onChange] = useState("10:00"); //  BORRARRRR
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -84,89 +87,75 @@ export const Property = () => {
       });
   };
 
-
-  ///////////////////////////////////////////////////////
-
- 
-  const lastRanking = properties.ranking
-  const lastReview = properties.review
+  const lastRanking = properties.ranking;
+  const lastReview = properties.review;
 
   const [rating, setRating] = useState(0); // initial rating value
-  const [average, setAverage] = useState(0)
-  const[review, setReview] = useState("")
+  const [average, setAverage] = useState(0);
+  const [review, setReview] = useState("");
 
-
-  const newRating = []
+  const newRating = [];
 
   const handleRating = (rate) => {
     setRating(rate);
 
-    console.log("RANKING  ORIGINAL ES" , lastRanking);
-     
-    lastRanking.push(rate)
-    let suma = 0
-    console.log("NUEVO RANKING PUSHEADO ES :", lastRanking);
-    for (let i = 0 ; i<lastRanking.length ; i++) {
-      suma += lastRanking[i]
+    lastRanking.push(rate);
+    let suma = 0;
+
+    for (let i = 0; i < lastRanking.length; i++) {
+      suma += lastRanking[i];
     }
 
-    const average = (suma / lastRanking.length).toFixed(2)
+    const average = (suma / lastRanking.length).toFixed(2);
 
-   setAverage(average)
+    setAverage(average);
 
-  axios.patch(`/api/property/${id}`, { ranking: lastRanking })
-      .then(response => {
-        console.log("RESPUESTAA DEL EDITORR ",  response);
+    axios
+      .patch(`/api/property/${id}`, { ranking: lastRanking })
+      .then((response) => {
+        console.log("RESPUESTAA DEL EDITORR ", response);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error(error);
       });
-
-
   };
-
-   //////////////////////////////////////////////////////
-
-/*   const handleReview = (review) => {
-    console.log("VALOR DE REVIEWWWW", review);
-  } */
-
 
   const titulo = 2023;
 
-
   const handleSubmit = (event) => {
-    /* setReview(event) */
-    console.log("REVIEW  ORIGINAL ES" , lastReview); 
-    console.log("REVIEW  EVENT ES " , review); 
-
-     lastReview.push(review) 
-
-     console.log("REVIEW  COMPLETA ES  " , lastReview); 
+    lastReview.push(review);
 
     event.preventDefault();
     axios
-      // .patch(`/api/property/review/${id}`, { review: [/* ...review, */ lastReview] })
       .patch(`/api/property/review/${id}`, { review: lastReview })
-      .then((response) => {
-        // Aquí puedes hacer algo con la respuesta del servidor si lo deseas
+      .then((allReviews) => {
+        /* console.log("TODAS LAS REVIEWSSS", allReviews); */
       })
       .catch((error) => {
-        // Manejo de errores
         console.error(error);
       });
+    setReview("");
   };
 
   const handleChange = (event) => {
     setReview(event.target.value);
   };
 
-  //////////////////////////////////////////////////////
-
   return (
     <>
       <Container className="prop-container">
         <Card>
+          <div className="prop-images">
+            <Carousel>
+              {properties.image &&
+                properties.image.map((img, index) => (
+                  <Carousel.Item key={index}>
+                    <img src={img} alt={`Imagen ${index + 1}`} />
+                  </Carousel.Item>
+                ))}
+            </Carousel>
+          </div>
+
           <Card.Body>
             <Card.Title className="centerItem">{properties.title}</Card.Title>
             <Card.Text>{properties.description}</Card.Text>
@@ -192,60 +181,73 @@ export const Property = () => {
           <Card.Body>
             {user.first_name ? (
               <>
-                {/* ///////////////////////////////////////////////////////////////////////////////// */}
-                {/* ///  AGREGADO POR MI  /// */}
-                <Container style={{ marginTop: ".1%" }}>
+                <Container style={{ marginTop: ".5%" }}>
                   <Rating
                     onClick={handleRating}
-                    ratingValue={rating} 
-                    size={20}
+                    ratingValue={rating}
+                    size={25}
                     label
                     transition
                     fillColor="orange"
                     emptyColor="gray"
                     className="foo" // Will remove the inline style if applied
                   />
-                  {/* Use rating value */}
-
-                  {/* {console.log("RATINGGG", rating)} */}
-                  {rating}
-                 {/* {average} */}
+                  {/* {rating} */}
                 </Container>
-                
-                {/* <h6> promedio actual: {titulo} </h6> */}
 
-                <h6>Valoración  = {average}</h6>
-                {/* ///////////////////////////////////////////////////////////////////////////////// */}
+                <h6>Valoración = {average}</h6>
 
                 <Button
-                  className="buttonStyle"
+                  className="btn-mas"
                   type="submit"
                   onClick={() => handleAddFavorites(properties.id)}
                 >
                   Favorito
                 </Button>
+                <br></br>
+                <br></br>
 
-              {/* ///////////////////////////////////////////////////////////////////////////////// */}
-              {/* ///  AGREGADO POR MI  /// */}
+                <Container>
+                  <form onSubmit={handleSubmit} className="btn-mas">
+                    <label className="review-textarea">
+                      Escriba su reseña:
+                      <br></br>
+                      {/* <br></br> */}
+                      <textarea
+                        value={review}
+                        /* className="btn-mas"  */
+                        /* style={{ borderBlockColor : "#123acb" }}  */
+                        className="review-textarea"
+                        onChange={handleChange}
+                      />
+                    </label>
+                    <br></br>
+                    <br></br>
+                    <Button className="btn-mas" type="submit">
+                      Enviar reseña
+                    </Button>
+                  </form>
+                </Container>
 
-                <Link to={`/properties/change/${id}`}>
-                  <Button className="buttonStyle">Agendar visita</Button>
-                </Link>
-              {/* ///////////////////////////////////////////////////////////////////////////////// */}             
-                  <Container>
-                  <form onSubmit={handleSubmit}>
-      <label>
-        Escriba su reseña:
-        <textarea value={review} onChange={handleChange} />
-      </label>
-      <button type="submit">Enviar reseña</button>
-    </form>
-                  </Container>
-
-              {/* ///////////////////////////////////////////////////////////////////////////////// */}
+                <Container>
+                  <br></br>
+                  <h5 style={{ color: "#123acb" }}>
+                    Opiniones de los compradores
+                  </h5>
+                  <div>
+                    {lastReview &&
+                      lastReview.map((review, index) => (
+                        <Card key={index} className="my-1 btn-mas">
+                          <Card.Body>
+                            <Card.Text>{review}</Card.Text>
+                          </Card.Body>
+                        </Card>
+                      ))}
+                  </div>
+                </Container>
 
                 <Button
-                  className="buttonStyle"
+                  className="btn-mas"
                   onClick={() => {
                     setIsScheduling(true);
                   }}
@@ -256,7 +258,7 @@ export const Property = () => {
                   <>
                     <div className="contenedor">
                       SELECCIONA LA FECHA DE TU CITA
-                      <div className="center" >
+                      <div className="center">
                         <ReactDatePicker
                           selected={selectedDate}
                           onChange={(date) => setSelectedDate(date)}
@@ -267,10 +269,10 @@ export const Property = () => {
                         <br />
                         <br />
                         <div className="container">
-                          <TimePicker 
+                          <TimePicker
                             value={selectedTime}
                             onChange={(time) => setSelectedTime(time)}
-                            disableClock={true}
+                            disableClock={false}
                           />
                         </div>{" "}
                         <br /> <br />
@@ -292,9 +294,9 @@ export const Property = () => {
           {user.is_admin ? (
             <>
               <Link to={`/edit/${id}`}>
-                <Button className="buttonStyle">Editar Propiedad</Button>
+                <Button className="btn-mas">Editar Propiedad</Button>
               </Link>
-              <Button className="buttonStyle">Eliminar Propiedad</Button>
+              <Button className="btn-mas">Eliminar Propiedad</Button>
             </>
           ) : null}
         </Card.Body>
