@@ -4,6 +4,24 @@
   margin-bottom: 2%;
 }
 
+.h1-grid {
+}
+@media (max-width: 700px) {
+  .h1-grid {
+    font-size: 20px;
+    margin-top: 50%;
+  }
+}
+.button-agregar {
+  border: 1px solid #123ac8;
+  border-radius: 22px 0px 0px 22px;
+  background-color: white;
+  color: #123acb;
+  font-family: "Montserrat";
+  font-weight: 800;
+  margin-bottom: 5%;
+}
+
 .buttonFav {
   border: 1px solid #123ac8;
   border-radius: 22px 0px 0px 22px;

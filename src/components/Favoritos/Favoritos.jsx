@@ -8,6 +8,7 @@ import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import { removeFromFavs, setUser } from "../../state/user";
 import { BiDollar } from "react-icons/bi";
 
@@ -76,9 +77,9 @@ export const Favoritos = () => {
         </Row>
       </div>
 
-      <Container className="cont-grid">
-        <Row className="row-grid">
-          {favourites.map((propiedad) => {
+      <Container>
+        <Row>
+          {favourites.map((propiedades) => {
             return (
               <Col
                 className="col-principal"
@@ -91,39 +92,49 @@ export const Favoritos = () => {
                   <Col className="col-cinco" xs={5}>
                     <Card.Img
                       className="grid-img"
-                      src={propiedad.image[0]}
+                      src={propiedades.image[0]}
+                   
+
                     ></Card.Img>
                   </Col>
                   <Col className="col-siete" xs={7}>
                     <Row>
                       <Col className="col-internas" sm={6}>
+                 
+
                         <BiDollar className="icons-internos" />{" "}
-                        {propiedad.price}
+                        {propiedades.price}
                       </Col>
                       <Col className="col-internas" sm={6}>
                         <SlLocationPin className="icons-internos" />{" "}
-                        {propiedad.city}
+                        {propiedades.city}
+
                       </Col>
                     </Row>
                     <Row>
                       <Col className="col-internas" sm={4}>
                         <RxRulerSquare className="icons-internos" />{" "}
-                        {propiedad.area} m2
+                        {propiedades.area} m2
                       </Col>
                       <Col className="col-internas" sm={4}>
-                        <BiBed className="icons-internos" /> {propiedad.bedroom}
+                        <BiBed className="icons-internos" />{" "}
+                        {propiedades.bedroom}
                       </Col>
                       <Col className="col-internas" sm={4}>
                         <BiBath className="icons-internos" />{" "}
-                        {propiedad.bathroom}
+                        {propiedades.bathroom}
+                    
+
                       </Col>
                     </Row>
                     <Row>
                       <Col className="col-internas">
                         <Form.Text>
-                          {propiedad.description.length > 180
-                            ? `${propiedad.description.substring(0, 180)}...`
-                            : propiedad.description}
+                          {propiedades.description.length > 180
+                            ? `${propiedades.description.substring(0, 180)}...`
+                            : propiedades.description}
+
+
                         </Form.Text>
                       </Col>
                     </Row>
@@ -133,14 +144,23 @@ export const Favoritos = () => {
                           <Button className="btn-cta">
                             <BiPhoneCall />
                           </Button>
-
+                        </Col>
+                        <Col className="col-internas-botones">
                           <Button
                             className="btn-mas"
-                            onClick={() => handleDeleteFav(propiedad.id)}
+                            onClick={() => {
+                              handleDeleteFav(propiedades.id);
+                            }}           
                           >
                             ELIMINAR
                           </Button>
                         </Col>
+                        <Col className="col-internas-botones">
+                          <Link to={`/property/${propiedades.id}`}>
+                            <Button className="btn-mas">VER MÁS</Button>
+                          </Link>
+                        </Col>
+
                       </Row>
                     </Container>
                   </Col>

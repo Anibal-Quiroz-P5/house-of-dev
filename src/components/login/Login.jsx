@@ -32,40 +32,41 @@ function Login() {
   };
 
   return (
-    <div className="todo">
-      INICIAR SESIÓN
-      <div className="color-overlay d-flex justify-content-center align-items-center">
-        <Form className="rounded p-4 p-sm-3" onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Control
-              value={email}
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              type="email"
-              placeholder="Ingrese su Email"
-              className="input"
-              required
-            />
-          </Form.Group>
-          <Form.Group className="mb-5" controlId="formBasicPassword">
-            <Form.Control
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              type="password"
-              placeholder="Ingrese su contraseña"
-              required
-            />
-          </Form.Group>
-
-          <button className="btn-mi-color" type="submit">
-            LOG IN
-            <Link to="/" />
-          </button>
-        </Form>
+    <div className="cont-login">
+      <div className="cont-titulo">
+        <h3 className="h3-house">HOUSE</h3>
+        <h3 className="h3-of-dev">OF DEV.</h3>
       </div>
+      <Form className="form-login" onSubmit={handleSubmit}>
+        <Form.Group className="form-inputs" controlId="formBasicEmail">
+          <Form.Control
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            type="email"
+            placeholder="Ingrese su Email"
+            className="input"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="form-inputs" controlId="formBasicPassword">
+          <Form.Control
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            placeholder="Ingrese su contraseña"
+            required
+            className="input"
+          />
+        </Form.Group>
+        <button className="btn-login" type="submit">
+          LOGIN
+          <Link to="/" />
+        </button>
+      </Form>
     </div>
   );
 }

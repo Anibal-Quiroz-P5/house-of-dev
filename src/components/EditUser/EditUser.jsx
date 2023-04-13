@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { Form } from "react-bootstrap";
 import { useNavigate, useParams } from "react-router";
 
 const EditUser = () => {
@@ -9,8 +10,7 @@ const EditUser = () => {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [user, setUser] = useState([]);
-  const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [newPhone, setNewPhone] = useState("");
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -19,13 +19,11 @@ const EditUser = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
     axios
       .patch(`api/user/update/${user.id}`, {
         first_name: firstName,
         last_name: lastName,
-        phone: phone,
-        password: password,
+        phone: newPhone,
       })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
@@ -33,43 +31,41 @@ const EditUser = () => {
         navigate("/userview");
       })
       .catch(() => {
-        alert("Hubo un error al actualizar los datos");
+        console.log("Hubo un error al actualizar los datos");
       });
   };
 
   return (
-    <div>
-      <h1>Editar</h1>
-      <form onSubmit={handleSubmit}>
-        <label>Nombre:</label>
-        <input
-          type="text"
-          value={user.firstName}
-          onChange={(e) => setFirstName(e.target.value)}
-        />{" "}
-        <br />
-        <label>Apellido:</label>
-        <input
-          type="text"
-          value={user.lastname}
-          onChange={(e) => setLastName(e.target.value)}
-        />{" "}
-        <br />
-        <label>Telefono:</label>
-        <input
-          type="text"
-          value={user.phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />{" "}
-        <br />
-        {/* <label>Contraseña:</label>
-        <input
-          type="text"
-          value={user.password}
-          onChange={(e) =>  setPassword(e.target.value)}
-        />{" "} */}
-        <br />
-        <button>Editar</button>
+    <div className="cont-login">
+      <div className="cont-titulo">
+        <h3 className="h3-house">EDITAR USUARIO</h3>
+      </div>
+      <form className="form-login" onSubmit={handleSubmit}>
+        <Form.Group className="form-inputs">
+          <input
+            placeholder="Ingrese su nuevo nombre"
+            type="text"
+            value={user.firstName}
+            onChange={(e) => setFirstName(e.target.value)}
+          />{" "}
+        </Form.Group>
+        <Form.Group className="form-inputs">
+          <input
+            placeholder="Ingrese su nuevo apellido"
+            type="text"
+            value={user.lastname}
+            onChange={(e) => setLastName(e.target.value)}
+          />{" "}
+        </Form.Group>
+        <Form.Group className="form-inputs">
+          <input
+            placeholder="Ingrese su nuevo número"
+            type="text"
+            value={user.newPhone}
+            onChange={(e) => setNewPhone(e.target.value)}
+          />{" "}
+        </Form.Group>
+        <button className="btn-login">Editar</button>
       </form>
     </div>
   );
