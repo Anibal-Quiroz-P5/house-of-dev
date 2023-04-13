@@ -76,7 +76,7 @@ export function AdminAllUsers() {
 
   const handleFavs = (id) => {
     axios.get(`/api/favourites/${id}/favourites`).then((res) => {
-      console.log("soy los favoritos de este usuario", res.data.properties);
+      console.log("soy los favoritos de este usuario", res.data);
       setFavs(res.data.properties);
       if (miVariable === 1) {
         setMiVariable(0);
@@ -128,7 +128,8 @@ export function AdminAllUsers() {
               <th>Teléfono</th>
               <th>Admin</th>
               <th>Eliminar</th>
-              <th>Acción</th>
+              <th>Permisos</th>
+              <th>Ver Favoritos</th>
             </tr>
           </thead>
 
@@ -166,7 +167,9 @@ export function AdminAllUsers() {
                       Promover
                     </Button>
                   )}
-
+                </td>
+                <td>
+                  {" "}
                   <Button
                     className="boton-edit"
                     onClick={() => handleFavs(user.id)}
@@ -174,6 +177,34 @@ export function AdminAllUsers() {
                     Ver favoritos
                   </Button>
                 </td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </Container>
+      <Container>
+        <Table
+          style={{
+            marginTop: "2%",
+            border: "2px solid #123acb",
+          }}
+          striped
+        >
+          <thead style={{ backgroundColor: "#fe4236", color: "white" }}>
+            <tr>
+              <th>Propiedad ID</th>
+              <th>Titulo</th>
+              <th>Dirección</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {" "}
+            {favs.map((fav) => (
+              <tr key={fav.id}>
+                <td>{fav.id}</td>
+                <td>{fav.title}</td>
+                <td>{fav.address}</td>
               </tr>
             ))}
           </tbody>
