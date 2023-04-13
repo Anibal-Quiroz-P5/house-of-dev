@@ -7,7 +7,6 @@ import Swal from "sweetalert2";
 export function AdminAllUsers() {
   const [users, setUsers] = useState([]);
   const user = useSelector((state) => state.user);
-
   const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useState } from "react";
-import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import { useNavigate } from "react-router";
 
@@ -37,74 +36,78 @@ function BasicExample() {
   };
 
   return (
-    <Form className="form-container" onSubmit={handleSubmit}>
-      <Form.Group className="mb-3" controlId="formBasicName">
-        <Form.Label> </Form.Label>
-        <Form.Control
-          required
-          value={firstName}
-          onChange={(e) => {
-            setFirstName(e.target.value);
-          }}
-          type="text"
-          placeholder="Ingrese su nombre"
-        />
-      </Form.Group>
-      <Form.Group className="mb-3" controlId="formBasicLastName">
-        <Form.Label> </Form.Label>
-        <Form.Control
-          required
-          value={lastName}
-          onChange={(e) => {
-            setLastName(e.target.value);
-          }}
-          type="text"
-          placeholder="Ingrese su apellido"
-        />
-      </Form.Group>
+    <div className="cont-login">
+      <div className="cont-titulo">
+        <h3 className="h3-house">HOUSE</h3>
+        <h3 className="h3-of-dev">OF DEV.</h3>
+      </div>
+      <Form className="form-login" onSubmit={handleSubmit}>
+        <Form.Group className="form-inputs" controlId="formBasicName">
+          <Form.Control
+            required
+            value={firstName}
+            onChange={(e) => {
+              setFirstName(e.target.value);
+            }}
+            type="text"
+            placeholder="Ingrese su nombre"
+            className="input"
+          />
+        </Form.Group>
+        <Form.Group className="form-inputs" controlId="formBasicLastName">
+          <Form.Control
+            required
+            value={lastName}
+            onChange={(e) => {
+              setLastName(e.target.value);
+            }}
+            type="text"
+            placeholder="Ingrese su apellido"
+            className="input"
+          />
+        </Form.Group>
+        <Form.Group className="form-inputs" controlId="formBasicNumber">
+          <Form.Control
+            required
+            value={phoneNumber}
+            onChange={(e) => {
+              setPhoneNumber(e.target.value);
+            }}
+            type="number"
+            placeholder="Ingrese su teléfono"
+            className="input"
+          />
+        </Form.Group>
 
-      <Form.Group className="mb-3" controlId="formBasicNumber">
-        <Form.Label> </Form.Label>
-        <Form.Control
-          required
-          value={phoneNumber}
-          onChange={(e) => {
-            setPhoneNumber(e.target.value);
-          }}
-          type="number"
-          placeholder="Ingrese su teléfono"
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label> </Form.Label>
-        <Form.Control
-          required
-          value={email}
-          onChange={(e) => {
-            setEmail(e.target.value);
-          }}
-          type="email"
-          placeholder="Ingrese su email"
-        />
-      </Form.Group>
-
-      <Form.Group className="mb-3" controlId="formBasicPassword">
-        <Form.Label> </Form.Label>
-        <Form.Control
-          required
-          value={password}
-          onChange={(e) => {
-            setPassword(e.target.value);
-          }}
-          type="password"
-          placeholder="Password"
-        />
-      </Form.Group>
-      <Button variant="danger" type="submit">
-        Submit
-      </Button>
-    </Form>
+        <Form.Group className="form-inputs" controlId="formBasicEmail">
+          <Form.Control
+            required
+            value={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+            type="email"
+            placeholder="Ingrese su email"
+            className="input"
+          />
+        </Form.Group>
+        <Form.Group className="form-inputs" controlId="formBasicPassword">
+          <Form.Control
+            required
+            value={password}
+            onChange={(e) => {
+              setPassword(e.target.value);
+            }}
+            type="password"
+            placeholder="Password"
+            className="input"
+          />
+        </Form.Group>
+        <button className="btn-reg" type="submit">
+          REGISTRARSE
+        </button>
+      </Form>
+    </div>
   );
 }
 

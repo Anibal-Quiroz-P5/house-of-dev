@@ -39,16 +39,6 @@ export const UserView = () => {
                 />
               </Link>
             </div>
-
-            <div></div>
-            <div className="col-md-12">
-              <div className="profile-img">
-                <img
-                  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS52y5aInsxSm31CvHOFHWujqUx_wWTS9iM6s7BAm21oEN_RiGoog"
-                  alt=""
-                />
-              </div>
-            </div>
           </div>
           <div className="row"></div>
           <div className="col-md-12">

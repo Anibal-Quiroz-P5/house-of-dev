@@ -11,12 +11,11 @@ export const Home = () => {
   };
 
   return (
-    <div className="back-img">
+    <div className="home">
       <div className="form-inicio">
         <div className="container-home">
           <div className="row fila-home">
             <div className="col-12 columna-home"> ¿QUÉ ESTAS BUSCANDO?</div>
-
             <div className="col-12 columna-home">
               {" "}
               <div class="form-check">
@@ -63,6 +62,7 @@ export const Home = () => {
           </div>
         </div>
       </div>
+      <div className="back-img"></div>
     </div>
   );
 };

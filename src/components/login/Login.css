@@ -1,25 +1,63 @@
-@import "bootstrap/dist/css/bootstrap.min.css";
-
-.todo {
-  margin-left: 15px;
-  font-family: "Montserrat", sans-serif;
-  position: absolute;
-  top: 20%;
-  /* display: flex;
+.cont-login {
+  display: flex;
+  height: 100vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  align-items: center;
+  flex-direction: column;
   justify-content: center;
-  align-items: center; */
-  z-index: 10;
 }
-.btn-mi-color {
-  font-size: 15px;
-  font-weight: bolder;
-  color: #123ac8;
+
+.h3-house {
+  color: white;
+  margin-left: 2%;
+  font-size: 50px;
+  font-weight: bold;
+}
+.h3-of-dev {
+  color: transparent;
+  -webkit-text-stroke: 1px white;
+  font-size: 50px;
+  font-weight: bold;
+  margin-left: 30%;
+}
+
+.cont-titulo {
+  background-color: #fe4236;
+  width: 25%;
+  margin: 0 auto;
+  margin-left: 30%;
+  margin-top: 3%;
+  padding: 2%;
+  box-shadow: 0px 0px 3px #000;
+}
+
+.form-login {
   background-color: white;
-  border-color: #123ac8;
-  border-radius: 25px;
-  padding: 10px 20px;
+  margin: 0 auto;
+  margin-left: 30%;
+  width: 25%;
+  padding: 3%;
+  box-shadow: 0px 0px 3px #000;
 }
-form {
-  color: rgb(0, 0, 0);
-  background-color: #f7f3ee;
+
+.form-inputs input {
+  width: 105%;
+  height: 37%;
+  padding: 12px 0px 12px 42px;
+  margin-bottom: 12px;
+  outline: none;
+  border: 1px solid #123ac8;
+  border-radius: 25px;
+}
+
+.btn-login {
+  border: 1px solid #123ac8;
+  border-radius: 30px;
+  width: 30%;
+  height: 25%;
+  font-size: 0.85rem;
+  margin-left: 75%;
+  background-color: white;
+  color: #123ac8;
 }

@@ -91,96 +91,94 @@ export const AdminProps = () => {
             PANEL DE PROPIEDADES
           </Col>
         </Row>
-        <Link to="/agregar">
-          <Button className="buttonEditar">
-            <FiEdit className="boton-cta" /> AGREGAR PROPIEDADES
-          </Button>
-        </Link>
+        <div
+          style={{
+            width: "100%",
+            display: "flex",
+            justifyContent: "end",
+          }}
+        >
+          <Link to="/agregar">
+            <Button className="button-agregar">
+              <FiEdit className="boton-cta" /> AGREGAR PROPIEDADES
+            </Button>
+          </Link>
+        </div>
       </div>
-      <Container className="cont-grid">
-        <Row className="row-grid">
-          {properties.map((propiedad) => {
+      <Container>
+        <Row>
+          {properties.map((propiedades) => {
             return (
-              <Col xs={12} md={6} lg={6} style={{ padding: "1.5%" }}>
-                <Card
-                  id={propiedad.id}
-                  style={{
-                    height: "250px",
-                    border: "1px solid #123AC8",
-                    borderRadius: "0px",
-                    margin: "0 auto",
-                    width: "95%",
-                  }}
-                >
-                  <Row>
-                    <Col xs={5}>
-                      <Card.Img
-                        style={{
-                          height: "250px",
-                          borderRight: "1px solid #123AC8",
-                          marginLeft: "5%",
-                          borderRadius: "0%",
-                        }}
-                        src={propiedad.image[0]}
-                      />
-                    </Col>
-                    <Col xs={7} style={{ width: "51%", margin: "0 auto" }}>
+              <Col
+                className="col-principal"
+                xs={12}
+                md={6}
+                lg={6}
+                style={{ padding: "1.5%" }}
+              >
+                <Row>
+                  <Col className="col-cinco" xs={5}>
+                    <Card.Img
+                      className="grid-img"
+                      src={propiedades.image[0]}
+                    ></Card.Img>
+                  </Col>
+                  <Col className="col-siete" xs={7}>
+                    <Row>
+                      <Col className="col-internas" sm={6}>
+                        $ {propiedades.price}
+                      </Col>
+                      <Col className="col-internas" sm={6}>
+                        <SlLocationPin className="icons-internos" />{" "}
+                        {propiedades.city}
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col className="col-internas" sm={4}>
+                        <RxRulerSquare className="icons-internos" />{" "}
+                        {propiedades.area} m2
+                      </Col>
+                      <Col className="col-internas" sm={4}>
+                        <BiBed className="icons-internos" />{" "}
+                        {propiedades.bedroom}
+                      </Col>
+                      <Col className="col-internas" sm={4}>
+                        <BiBath className="icons-internos" />{" "}
+                        {propiedades.bathroom}
+                      </Col>
+                    </Row>
+                    <Row>
+                      <Col className="col-internas">
+                        <Form.Text>
+                          {propiedades.description.length > 180
+                            ? `${propiedades.description.substring(0, 180)}...`
+                            : propiedades.description}
+                        </Form.Text>
+                      </Col>
+                    </Row>
+                    <Container className="cont-btn">
                       <Row>
-                        <Col className="col-grid" sm={6}>
-                          <Form.Text className="text-muted">
-                            $ {propiedad.price}
-                          </Form.Text>
-                        </Col>
-                        <Col className="col-grid" sm={6}>
-                          <Form.Text className="text-muted">
-                            <SlLocationPin /> {propiedad.city}
-                          </Form.Text>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col className="col-grid" sm={4}>
-                          <Form.Text className="text-muted">
-                            <RxRulerSquare /> {propiedad.area} m2
-                          </Form.Text>
-                        </Col>
-
-                        <Col className="col-grid" sm={4}>
-                          <Form.Text className="text-muted">
-                            <BiBed /> {propiedad.bedroom} Dorm.
-                          </Form.Text>
-                        </Col>
-                        <Col className="col-grid" sm={4}>
-                          <Form.Text className="text-muted">
-                            <BiBath className="botones-info" />{" "}
-                            {propiedad.bathroom} Baños
-                          </Form.Text>
-                        </Col>
-                      </Row>
-                      <Row>
-                        <Col className="col-grid" sm={12}>
-                          <Form.Text className="text-muted">
-                            {propiedad.description}
-                          </Form.Text>
-                        </Col>
-                      </Row>
-                      <Card.Body className="botones-div">
-                        <Button
-                          className="buttonEditar"
-                          onClick={() => {
-                            handleDelete(propiedad.id);
-                          }}
-                        >
-                          <FiTrash2 className="boton-cta" /> ELIMINAR
-                        </Button>
-                        <Link to={`/edit/${propiedad.id}`}>
-                          <Button className="buttonEditar">
-                            <FiEdit className="boton-cta" /> EDITAR
+                        <Col className="col-internas-botones">
+                          <Button
+                            className="btn-mas"
+                            onClick={() => {
+                              handleDelete(propiedades.id);
+                            }}
+                          >
+                            <FiTrash2 className="boton-cta" /> ELIMINAR
                           </Button>
-                        </Link>
-                      </Card.Body>{" "}
-                    </Col>
-                  </Row>
-                </Card>
+                        </Col>
+                        <Col className="col-internas-botones">
+                          <Link to={`/edit/${propiedades.id}`}>
+                            <Button className="btn-mas">
+                              <FiEdit className="boton-cta" /> EDITAR
+                            </Button>
+                          </Link>
+                        </Col>
+                      </Row>
+                    </Container>
+                  </Col>
+                </Row>
               </Col>
             );
           })}
@@ -189,3 +187,21 @@ export const AdminProps = () => {
     </section>
   );
 };
+
+{
+  /* <Card.Body className="botones-div">
+<Button
+  className="buttonEditar"
+  onClick={() => {
+    handleDelete(propiedad.id);
+  }}
+>
+  <FiTrash2 className="boton-cta" /> ELIMINAR
+</Button>
+<Link to={`/edit/${propiedad.id}`}>
+  <Button className="buttonEditar">
+    <FiEdit className="boton-cta" /> EDITAR
+  </Button>
+</Link>
+</Card.Body>{" "} */
+}

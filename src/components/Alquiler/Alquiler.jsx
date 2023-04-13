@@ -20,6 +20,7 @@ import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
 import { addToFavs, setUser } from "../../state/user";
+import Swal from "sweetalert2";
 
 export const Alquiler = () => {
   const dispatch = useDispatch();
@@ -112,20 +113,26 @@ export const Alquiler = () => {
       });
     console.log("Realizando búsqueda con la query:", query);
   };
+
   //añadir a favoritos // no funciona
-  // const handleAddFavorites = (id) => {
-  //   axios
-  //     .post(
-  //       `/api/favourites/${user.id}/add/${id}`,
-  //       { id, user },
-  //       { withCredentials: true }
-  //     )
-  //     .then((res) => {
-  //       console.log("agregado correctamente", res.data);
-  //       dispatch(addToFavs(res.data));
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
+  const handleAddFavorites = (id) => {
+    axios
+      .post(
+        `/api/favourites/${user.id}/add/${id}`,
+        { id: properties.id, user },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("agregado correctamente", res.data);
+        Swal.fire({
+          title: "Agregado a favoritos",
+          icon: "success",
+          timer: "1000",
+        });
+        dispatch(addToFavs(res.data));
+      })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -482,7 +489,12 @@ export const Alquiler = () => {
                             </Button>
                           </Col>
                           <Col className="col-internas-botones">
-                            <Button className="btn-cta">
+                            <Button
+                              className="btn-cta"
+                              onClick={() => {
+                                handleAddFavorites(propiedades.id);
+                              }}
+                            >
                               <MdFavoriteBorder />
                             </Button>
                           </Col>
