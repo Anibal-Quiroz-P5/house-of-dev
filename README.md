@@ -37,8 +37,6 @@ Para poder iniciar, despues de clonar el repositorio ejecutar el comando `npm i`
 ![Screenshot from 2023-04-06 15-06-15](https://user-images.githubusercontent.com/82118666/230461659-b0127b80-ab78-4860-9974-f9cb91e2f414.png)
 ·Vista individual desde un usuario administrador
 ![Screenshot from 2023-04-06 15-06-48](https://user-images.githubusercontent.com/82118666/230461665-706f2dfb-3778-4686-810b-0ce1604c76a0.png)
-·Panel de usuarios desde usuario administrador
-![Screenshot from 2023-04-06 15-07-00](https://user-images.githubusercontent.com/82118666/230461676-d8991eca-d31c-4836-a694-7f08a0ec9c0b.png)
 ·Filtros aplicables
 ![Screenshot from 2023-04-06 15-07-17](https://user-images.githubusercontent.com/82118666/230461681-ce53c0a5-8ac9-4ef6-8c87-1a483499ebb5.png)
 ·Vista de favoritos de un usuario
