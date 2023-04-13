@@ -10,6 +10,7 @@ import { SlLocationPin } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { removeFromFavs, setUser } from "../../state/user";
+import { BiDollar } from "react-icons/bi";
 
 export const Favoritos = () => {
   const dispatch = useDispatch();
@@ -92,16 +93,22 @@ export const Favoritos = () => {
                     <Card.Img
                       className="grid-img"
                       src={propiedades.image[0]}
+                   
+
                     ></Card.Img>
                   </Col>
                   <Col className="col-siete" xs={7}>
                     <Row>
                       <Col className="col-internas" sm={6}>
-                        $ {propiedades.price}
+                 
+
+                        <BiDollar className="icons-internos" />{" "}
+                        {propiedades.price}
                       </Col>
                       <Col className="col-internas" sm={6}>
                         <SlLocationPin className="icons-internos" />{" "}
                         {propiedades.city}
+
                       </Col>
                     </Row>
                     <Row>
@@ -116,6 +123,8 @@ export const Favoritos = () => {
                       <Col className="col-internas" sm={4}>
                         <BiBath className="icons-internos" />{" "}
                         {propiedades.bathroom}
+                    
+
                       </Col>
                     </Row>
                     <Row>
@@ -124,6 +133,8 @@ export const Favoritos = () => {
                           {propiedades.description.length > 180
                             ? `${propiedades.description.substring(0, 180)}...`
                             : propiedades.description}
+
+
                         </Form.Text>
                       </Col>
                     </Row>
@@ -139,7 +150,7 @@ export const Favoritos = () => {
                             className="btn-mas"
                             onClick={() => {
                               handleDeleteFav(propiedades.id);
-                            }}
+                            }}           
                           >
                             ELIMINAR
                           </Button>
@@ -149,11 +160,70 @@ export const Favoritos = () => {
                             <Button className="btn-mas">VER MÁS</Button>
                           </Link>
                         </Col>
+
                       </Row>
                     </Container>
                   </Col>
                 </Row>
               </Col>
+              // <Col className="col-grid col-md-offset-2" sm={6}>
+              //   <Card.Body>
+              //     <Row>
+              //       <Col className="col-grid" sm={12}>
+              //         <Card.Title>{favourites.title}</Card.Title>
+              //       </Col>
+              //       <Col className="col-grid" sm={6}>
+              //         <Form.Text className="text-muted">
+              //           $ {propiedad.price}
+              //         </Form.Text>
+              //       </Col>
+              //       <Col className="col-grid" sm={6}>
+              //         <Form.Text className="text-muted">
+              //           <SlLocationPin /> {propiedad.city}
+              //         </Form.Text>
+              //       </Col>
+              //     </Row>
+              //     <Row>
+              //       <Col className="col-grid" sm={4}>
+              //         <Form.Text className="text-muted">
+              //           <RxRulerSquare /> {propiedad.area} m2
+              //         </Form.Text>
+              //       </Col>
+
+              //       <Col className="col-grid" sm={4}>
+              //         <Form.Text className="text-muted">
+              //           <BiBed /> {propiedad.bedroom} Dorm.
+              //         </Form.Text>
+              //       </Col>
+              //       <Col className="col-grid" sm={4}>
+              //         <Form.Text className="text-muted">
+              //           <BiBath className="botones-info" /> {propiedad.bathroom}{" "}
+              //           Baños
+              //         </Form.Text>
+              //       </Col>
+              //     </Row>
+              //     <Row>
+              //       <Col className="col-grid" sm={12}>
+              //         <Form.Text className="text-muted">
+              //           {propiedad.description.length > 250
+              //             ? `${propiedad.description.substring(0, 250)}...`
+              //             : propiedad.description}
+              //         </Form.Text>
+              //       </Col>
+              //     </Row>
+              //   </Card.Body>
+              //   <Card.Body className="botones-div">
+              //     <Button className="btn-cta">
+              //       <BiPhoneCall className="boton-cta" />
+              //     </Button>
+              //     <Button
+              //       className="btn-mas"
+              //       onClick={() => handleDeleteFav(propiedad.id)}
+              //     >
+              //       ELIMINAR
+              //     </Button>
+              //   </Card.Body>
+              // </Col>
             );
           })}
         </Row>

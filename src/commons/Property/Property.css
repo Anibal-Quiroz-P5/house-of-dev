@@ -12,44 +12,73 @@
   width: 100%;
   padding: 15px;
 }
-.carousel {
+.carousel-inner {
   width: 80%;
-  height: 700px;
+  height: 500px;
   display: flex;
   margin: 0 auto;
-  margin-top: 2%;
+  margin-top: 2%; 
 }
 
-.prop-container {
-  width: 90%;
+.review-textarea {
+  border-color: #123acb;
+  border-width: 1px;
+  padding: 8px;
+  font-size: 16px;
+  width: 100%;
 }
 
-.propertyImage {
-  height: 600px;
-  margin-top: 3%;
+.review-textarea:focus,
+.review-textarea:hover {
+  border-width: 2px;
+  outline: none;
 }
 
+.prop-images img{
+  
+  width: 65%;
+    
+}
 
-/* .react-time-picker__inputGroup__input.react-time-picker__inputGroup__hour{
+/* .active  {
+  background-color: chartreuse;
+} */
+
+/* .carousel.item img {
+  width: 20px;
+} */
+/* .carousel-inner img {
+  height: 110%;
+
+} */
+
+
+
+
+
+.react-time-picker__inputGroup__input.react-time-picker__inputGroup__hour{
  
-  color: black;
-  width: 30px;
-  padding: 30px;
+  width: 9px;
+  padding: 0px;
+  /* color: black; */
+/* margin-top: 10px; 
+margin-bottom: 10px;  */
+  /* font-size: small;
+   */
 }
+
+
 
 .react-time-picker__inputGroup__input.react-time-picker__inputGroup__minute{
 
-  width: 30px;
-  padding: 40px;
-  color: black;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  font-size: small;
+  width: 9px;
+  padding: 0px;
+  /* color: black; */
+/*   margin-top: 10px;
+  margin-bottom: 10px; */
+  /* font-size: small; */
 }
 
-.react-time-picker__inputGroup__input__divider{
- 
-
-    color: black;
- 
-  }  */
+.react-time-picker__inputGroup {
+ /* width: 30%; */
+}

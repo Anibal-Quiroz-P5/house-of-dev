@@ -3,15 +3,20 @@ const appointmentRouter = express.Router();
 const moment = require("moment");
 const { User, Appointment, Property } = require("../models");
 const transporter = require("../config/mailer");
-
 const MIN_HOUR = 7;
 const MAX_HOUR = 19;
-
 // obtener todas las citas
 
 appointmentRouter.get("/appointments", (req, res) => {
   Appointment.findAll({
-    attributes: ["id", "date", "time"],
+    attributes: ["id", "date", "time", "userId", "propertyId"],
+    include: [
+      {
+        model: User,
+        attributes: ["first_name", "last_name", "phone", "email"],
+      },
+      { model: Property, attributes: ["address", "image"] },
+    ],
   })
     .then((appointment) => {
       res.status(200).send(appointment);
@@ -99,6 +104,7 @@ appointmentRouter.get("/:userId/appointments", (req, res) => {
     include: [
       {
         model: Property,
+        Appointment,
         through: { model: Appointment, attributes: ["id", "date", "time"] },
       },
     ],

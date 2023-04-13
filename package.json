@@ -29,7 +29,7 @@
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
     "react-simple-star-rating": "^5.1.7",
-    "react-time-picker": "^6.0.2",
+    "react-time-picker": "^6.0.4",
     "redux": "^4.2.1",
     "redux-logger": "^3.0.6",
     "sequelize": "^6.29.3",
