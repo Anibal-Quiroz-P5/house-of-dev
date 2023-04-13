@@ -20,6 +20,7 @@ import { useEffect } from "react";
 import { useState } from "react";
 import { addToFavs, setUser } from "../../state/user";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 export const Venta = () => {
   const dispatch = useDispatch();
@@ -111,6 +112,27 @@ export const Venta = () => {
     console.log("Realizando búsqueda con la query:", query);
   };
 
+  //agregar a fav
+
+  const handleAddFavorites = (id) => {
+    axios
+      .post(
+        `/api/favourites/${user.id}/add/${id}`,
+        { id: properties.id, user },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log("agregado correctamente", res.data);
+        Swal.fire({
+          title: "Agregado a favoritos",
+          icon: "success",
+          timer: "1000",
+        });
+        dispatch(addToFavs(res.data));
+      })
+      .catch((error) => console.log(error));
+  };
+
   return (
     <>
       <div
@@ -165,8 +187,8 @@ export const Venta = () => {
             color: "white",
           }}
         >
-          <h1 className="h1-grid">Lorem ipsum dolor</h1>
-          <h1 className="h1-grid">amet consectetur adipisicing elit.</h1>
+          <h1 className="h1-grid">House of Dev</h1>
+          <h1 className="h1-grid">Tu nueva vivienda está aquí.</h1>
         </div>
       </div>
       <Container style={{ marginTop: "2%", marginBottom: "2%" }}>
@@ -460,13 +482,18 @@ export const Venta = () => {
                       </Row>
                       <Container className="cont-btn">
                         <Row>
-                          <Col className="col-internas-botones">
+                          {/* <Col className="col-internas-botones">
                             <Button className="btn-cta">
                               <BiPhoneCall />
                             </Button>
-                          </Col>
+                          </Col> */}
                           <Col className="col-internas-botones">
-                            <Button className="btn-cta">
+                            <Button
+                              className="btn-cta"
+                              onClick={() => {
+                                handleAddFavorites(propiedades.id);
+                              }}
+                            >
                               <MdFavoriteBorder />
                             </Button>
                           </Col>
