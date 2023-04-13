@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import "./Login.css";
 import { useDispatch } from "react-redux";
 import { setUser } from "../../state/user";
+import Swal from "sweetalert2";
 
 function Login() {
   const dispatch = useDispatch();
@@ -27,7 +28,11 @@ function Login() {
         navigate("/");
       })
       .catch(() => {
-        alert("Email o contraseña incorrecta. Intente nuevamente");
+        Swal.fire({
+          title: "Email o contraseña incorrectas. Intente nuevamente",
+          icon: "error",
+          timer: "3000",
+        });
       });
   };
 

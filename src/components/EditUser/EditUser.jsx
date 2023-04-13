@@ -1,11 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Form } from "react-bootstrap";
-import { useNavigate, useParams } from "react-router";
-
+import { useNavigate } from "react-router";
+import Swal from "sweetalert2";
 const EditUser = () => {
   const navigate = useNavigate();
-  const { id } = useParams();
 
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -27,7 +26,11 @@ const EditUser = () => {
       })
       .then((res) => {
         localStorage.setItem("user", JSON.stringify(res.data));
-        alert("Se realizaron los cambios satisfactoriamente");
+        Swal.fire({
+          title: "Se realizaron los cambios satisfactoriamente",
+          icon: "success",
+          timer: "2000",
+        });
         navigate("/userview");
       })
       .catch(() => {
