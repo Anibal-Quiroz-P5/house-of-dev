@@ -50,6 +50,7 @@ Para poder iniciar, despues de clonar el repositorio ejecutar el comando `npm i`
 ![Screenshot from 2023-04-13 16-12-07](https://user-images.githubusercontent.com/82118666/231862877-e4f89a74-252c-480d-ae4c-ec1e6d2ffeb7.png)
 ·Panel de edición de usuario
 ![Screenshot from 2023-04-13 16-16-51](https://user-images.githubusercontent.com/82118666/231862939-5d42bc4f-41a5-4adb-ad87-fb1632bc682b.png)
+
 ·Formulario de editar o agregar propiedad
 ![Screenshot from 2023-04-13 16-18-04](https://user-images.githubusercontent.com/82118666/231863182-dafd7e10-fa2f-4c74-89c9-ac40ed6fc153.png)
 ·Ver las citas agendadas
