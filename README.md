@@ -26,9 +26,8 @@ Para poder iniciar, despues de clonar el repositorio ejecutar el comando `npm i`
 
 ·Página de inicio
 ![Screenshot from 2023-04-06 15-03-52](https://user-images.githubusercontent.com/82118666/230461552-f8e588b2-4db6-4aa4-8ea9-c92e40fab999.png)
-![Screenshot from 2023-04-13 16-18-57](https://user-images.githubusercontent.com/82118666/231861834-5add3cbf-f635-45e7-8546-d18a16809cd2.png)
 ·Vista de la grilla de propiedades
-![Screenshot from 2023-04-06 15-04-08](https://user-images.githubusercontent.com/82118666/230461580-40b7b80a-2047-4108-b75b-628fcd9bf97e.png)
+![Screenshot from 2023-04-13 16-18-57](https://user-images.githubusercontent.com/82118666/231861834-5add3cbf-f635-45e7-8546-d18a16809cd2.png)
 ·Navbar para un usuario cliente
 ![Screenshot from 2023-04-06 15-05-13](https://user-images.githubusercontent.com/82118666/230461597-fa6cac8f-d365-4ae3-b8cd-4d1e468c3815.png)
 ·Vista individual de una propiedad
