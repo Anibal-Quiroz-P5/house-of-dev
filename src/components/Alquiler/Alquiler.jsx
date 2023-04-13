@@ -1,6 +1,5 @@
 import React from "react";
 import "./Alquiler.css";
-import { Grid } from "../../commons/Grid/Grid";
 import {
   Accordion,
   Button,
@@ -15,11 +14,11 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
-import { BiBed, BiBath, BiPhoneCall, BiDollar } from "react-icons/bi";
+import { BiBed, BiBath, BiDollar } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
-import { addToFavs, setUser } from "../../state/user";
+import { addToFavs } from "../../state/user";
 import Swal from "sweetalert2";
 
 export const Alquiler = () => {

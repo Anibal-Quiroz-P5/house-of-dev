@@ -1,14 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Row, Col, ListGroup, Container, Button, Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { Row, Col, Container, Button, Table } from "react-bootstrap";
 import Swal from "sweetalert2";
 
 export function AdminAllUsers() {
   const [users, setUsers] = useState([]);
-  const user = useSelector((state) => state.user);
-  const navigate = useNavigate();
   const [favs, setFavs] = useState([]);
   const [miVariable, setMiVariable] = useState(1);
 

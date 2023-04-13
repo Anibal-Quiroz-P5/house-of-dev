@@ -11,15 +11,10 @@ import { BiBed, BiBath } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import { useNavigate, useParams } from "react-router";
 import Swal from "sweetalert2";
-import { useSelector } from "react-redux";
 
 export const AdminProps = () => {
   const [properties, setProperties] = useState([]);
-  const navigate = useNavigate();
-  const { id } = useParams();
-  const user = useSelector((state) => state.user);
 
   useEffect(() => {
     axios
@@ -187,21 +182,3 @@ export const AdminProps = () => {
     </section>
   );
 };
-
-{
-  /* <Card.Body className="botones-div">
-<Button
-  className="buttonEditar"
-  onClick={() => {
-    handleDelete(propiedad.id);
-  }}
->
-  <FiTrash2 className="boton-cta" /> ELIMINAR
-</Button>
-<Link to={`/edit/${propiedad.id}`}>
-  <Button className="buttonEditar">
-    <FiEdit className="boton-cta" /> EDITAR
-  </Button>
-</Link>
-</Card.Body>{" "} */
-}

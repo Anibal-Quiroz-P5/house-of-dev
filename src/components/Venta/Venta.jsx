@@ -1,6 +1,5 @@
 import React from "react";
 import "./Venta.css";
-import { Grid } from "../../commons/Grid/Grid";
 import {
   Accordion,
   Button,
@@ -11,14 +10,14 @@ import {
   Card,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { BiBed, BiBath, BiPhoneCall } from "react-icons/bi";
+import { BiBed, BiBath } from "react-icons/bi";
 import { RxRulerSquare } from "react-icons/rx";
 import { SlLocationPin } from "react-icons/sl";
 import { useDispatch, useSelector } from "react-redux";
 import { MdFavoriteBorder } from "react-icons/md";
 import { useEffect } from "react";
 import { useState } from "react";
-import { addToFavs, setUser } from "../../state/user";
+import { addToFavs } from "../../state/user";
 import axios from "axios";
 import Swal from "sweetalert2";
 
@@ -482,11 +481,6 @@ export const Venta = () => {
                       </Row>
                       <Container className="cont-btn">
                         <Row>
-                          {/* <Col className="col-internas-botones">
-                            <Button className="btn-cta">
-                              <BiPhoneCall />
-                            </Button>
-                          </Col> */}
                           <Col className="col-internas-botones">
                             <Button
                               className="btn-cta"

@@ -176,36 +176,3 @@ export const Grid = () => {
     </section>
   );
 };
-
-{
-  /* <Container>
-  <Row>
-    <Col className="col-principal" xs={12} md={6} lg={6}>
-      <Row>
-        <Col className="col-cinco" xs={5}>
-          Colum Img
-        </Col>
-        <Col className="col-siete" xs={7}>
-          <Row>
-            <Col>1 of 2</Col>
-            <Col>2 of 2</Col>
-          </Row>
-          <Row>
-            <Col>1 of 2</Col>
-            <Col>2 of 2</Col>
-            <Col>2 of 2</Col>
-          </Row>
-          <Row>
-            <Col>1 of 2</Col>
-          </Row>
-          <Row>
-            <Col>1 of 2</Col>
-            <Col>1 of 2</Col>
-            <Col>1 of 2</Col>
-          </Row>
-        </Col>
-      </Row>
-    </Col>
-  </Row>
-</Container>; */
-}

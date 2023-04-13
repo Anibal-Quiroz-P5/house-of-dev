@@ -22,11 +22,13 @@ export const Property = () => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [isScheduling, setIsScheduling] = useState(false);
-
+  const [rating, setRating] = useState(0);
+  const [average, setAverage] = useState(0);
+  const [review, setReview] = useState("");
+  const lastRanking = properties.ranking;
+  const lastReview = properties.review;
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-
-  const [value, onChange] = useState("10:00"); //  BORRARRRR
 
   useEffect(() => {
     const userLogueado = JSON.parse(localStorage.getItem("user")) || {};
@@ -55,7 +57,6 @@ export const Property = () => {
   };
 
   const handleAgendar = (id) => {
-    //const formattedDate = selectedDate.toISOString().slice(0, 10);
     const selectedDateMoment = moment(selectedDate);
     const hoy = moment();
     const formattedDate = selectedDateMoment.format("YYYY-MM-DD");
@@ -107,15 +108,6 @@ export const Property = () => {
       });
   };
 
-  const lastRanking = properties.ranking;
-  const lastReview = properties.review;
-
-  const [rating, setRating] = useState(0); // initial rating value
-  const [average, setAverage] = useState(0);
-  const [review, setReview] = useState("");
-
-  const newRating = [];
-
   const handleRating = (rate) => {
     setRating(rate);
 
@@ -140,8 +132,6 @@ export const Property = () => {
       });
   };
 
-  const titulo = 2023;
-
   const handleSubmit = (event) => {
     lastReview.push(review);
 
@@ -149,7 +139,7 @@ export const Property = () => {
     axios
       .patch(`/api/property/review/${id}`, { review: lastReview })
       .then((allReviews) => {
-        /* console.log("TODAS LAS REVIEWSSS", allReviews); */
+        console.log("TODAS LAS REVIEWSSS", allReviews);
       })
       .catch((error) => {
         console.error(error);
@@ -210,7 +200,7 @@ export const Property = () => {
                     transition
                     fillColor="orange"
                     emptyColor="gray"
-                    className="foo" // Will remove the inline style if applied
+                    className="foo"
                   />
                   {/* {rating} */}
                 </Container>
@@ -232,11 +222,8 @@ export const Property = () => {
                     <label className="review-textarea">
                       Escriba su reseña:
                       <br></br>
-                      {/* <br></br> */}
                       <textarea
                         value={review}
-                        /* className="btn-mas"  */
-                        /* style={{ borderBlockColor : "#123acb" }}  */
                         className="review-textarea"
                         onChange={handleChange}
                       />
